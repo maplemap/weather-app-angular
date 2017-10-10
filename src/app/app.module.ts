@@ -11,7 +11,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 
 import { weatherRouting } from './routes/weather.routing';
 
-import { WeatherService } from './_services/weather.service';
+import { WeatherService } from './weather/weather.service';
 import { ResolveLocationService } from './_services/resolve-location.service';
 import { LoaderService } from './components/loader/loader.service';
 

@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
-import { ResolveLocationService } from '../services/resolve-location.service';
+import { ResolveLocationService } from '../_services/resolve-location.service';
 
 import { WeatherComponent } from '../weather/weather.component';
 

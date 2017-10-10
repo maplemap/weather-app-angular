@@ -4,7 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 
-import { Weather } from '../interfaces/weather';
+import { LoaderService } from '../components/loader/loader.service';
+
+import { Weather } from './weather';
 import { api } from '../config';
 
 @Injectable()
@@ -13,9 +15,14 @@ export class WeatherService {
   forecastUpdateInterval: number = 900000;
   weather: Weather;
 
-  constructor(private http: Http) { }
+  constructor(
+    private http: Http,
+    private loaderService: LoaderService
+  ) { }
 
-  getWeatherByСurrentLocation() {
+  getWeatherByСurrentLocation(): Promise<any> {
+    this.showLoader();
+
     return new Promise((resolve, reject) => {
       window.navigator.geolocation.getCurrentPosition(async (position) => {
         const { latitude, longitude } = position.coords;
@@ -23,6 +30,8 @@ export class WeatherService {
         this.getWeatherByLocation(latitude, longitude).subscribe((responseData) => {
           this.weather = this.handleResponseWeatherData(responseData);
           resolve(this.weather);
+
+          this.hideLoader();
         }
         );
       }, (error) => {
@@ -30,16 +39,19 @@ export class WeatherService {
           this.getWeatherByCity('London').subscribe((responseData) => {
             this.weather = this.handleResponseWeatherData(responseData);
             resolve(this.weather);
+
+            this.hideLoader();
           }
           );
         } else {
-          this.handleError(error);
+          console.error(error);
+          this.hideLoader();
         }
       });
     })
   }
 
-  getWeatherByLocation(latitude: number, longitude: number): Observable<Weather> {
+  getWeatherByLocation(latitude: number, longitude: number): Observable<any> {
     return Observable.interval(this.weatherUpdateInterval).startWith(0)
       .switchMap(() =>
         this.http.get(`${api.host}/weather?appid=${api.appid}&lat=${latitude}&lon=${longitude}&units=${api.units}`)
@@ -48,7 +60,7 @@ export class WeatherService {
       );
   }
 
-  getWeatherByCity(city: string) {
+  getWeatherByCity(city: string): Observable<any> {
     return Observable.interval(this.weatherUpdateInterval).startWith(0)
       .switchMap(() =>
         this.http.get(`${api.host}/weather?appid=${api.appid}&q=${city}&units=${api.units}`)
@@ -57,7 +69,7 @@ export class WeatherService {
       );
   }
 
-  getForecastByLocation(latitude: number, longitude: number) {
+  getForecastByLocation(latitude: number, longitude: number): Observable<any> {
     return Observable.interval(this.forecastUpdateInterval).startWith(0)
       .switchMap(() =>
         this.http.get(`${api.host}/forecast?appid=${api.appid}&lat=${latitude}&lon=${longitude}&units=${api.units}&cnt=${api.amountForecastDays}`)
@@ -66,7 +78,7 @@ export class WeatherService {
       );
   }
 
-  getForecastByCity(city: string) {
+  getForecastByCity(city: string): Observable<any> {
     return Observable.interval(this.forecastUpdateInterval).startWith(0)
       .switchMap(() =>
         this.http.get(`${api.host}/forecast?q=${city},us&appid=${api.appid}&units=${api.units}&cnt=${api.amountForecastDays}`)
@@ -75,16 +87,23 @@ export class WeatherService {
       );
   }
 
-  private handleResponseWeatherData(responseData: any) {
+  private handleResponseWeatherData(responseData: any): Weather {
     console.log(responseData);
 
     const { name, main, weather } = responseData;
     return new Weather(name, main.temp, weather[0].description, main.temp_min, main.temp_max, weather[0].icon);
   }
 
-  private handleError(error: any) {
+  private handleError(error: any): Observable<any> {
     console.error('Error', error);
     return Observable.throw(error.message || error)
   }
 
+  private showLoader(): void {
+    this.loaderService.show();
+  }
+
+  private hideLoader(): void {
+    this.loaderService.hide();
+  }
 }
