@@ -4,13 +4,16 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { CityCardComponent } from './components/city/city-card/city-card.component';
+import { CityCardComponent } from './components/city-card/city-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { WeatherComponent } from './weather/weather.component';
+import { LoaderComponent } from './components/loader/loader.component';
+
 import { weatherRouting } from './routes/weather.routing';
 
-import { WeatherService } from './services/weather.service';
-import { ResolveLocationService } from './services/resolve-location.service';
+import { WeatherService } from './_services/weather.service';
+import { ResolveLocationService } from './_services/resolve-location.service';
+import { LoaderService } from './components/loader/loader.service';
 
 @NgModule({
   declarations: [
@@ -18,14 +21,19 @@ import { ResolveLocationService } from './services/resolve-location.service';
     HeaderComponent,
     CityCardComponent,
     SearchBarComponent,
-    WeatherComponent
+    WeatherComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     weatherRouting
   ],
-  providers: [WeatherService, ResolveLocationService],
+  providers: [
+    WeatherService,
+    ResolveLocationService,
+    LoaderService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
