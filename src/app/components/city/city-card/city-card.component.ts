@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Weather } from '../../../interfaces/weather';
 
 @Component({
   selector: 'app-city-card',
@@ -6,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./city-card.component.scss']
 })
 export class CityCardComponent implements OnInit {
-
-  constructor() { }
+  @Input() weather: Weather;
 
   ngOnInit() {
+    console.log('app-city-card', this.weather);
   }
-
 }
