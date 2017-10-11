@@ -11,4 +11,10 @@ export class SearchBarComponent {
   onClickCleanBtn() {
     this.searchText = '';
   }
+
+  onKeyPress(e: any) {
+    if (e.keyCode === 13 && e.target.value) {
+      console.log(e.target.value);
+    }
+  }
 }

@@ -7,6 +7,7 @@
       class="search-bar__input"
       type="text"
       [(ngModel)]="searchText"
+      (keypress)="onKeyPress($event)"
       autocomplete="off">
     <div class="search-bar__action-btn">
       <button
