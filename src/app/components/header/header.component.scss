@@ -1,0 +1,27 @@
+@import '../../../styles/variables';
+
+.header {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 6px 0px;
+
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    max-width: $max-width-app;
+    height: 4em;
+    line-height: 4em;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    display: inline-block;
+    margin-right: .5em;
+
+    .meteocons {
+      font-size: 2.8em;
+    }
+  }
+
+  &__brand {
+    font-size: 1.3em;
+  }
+}
