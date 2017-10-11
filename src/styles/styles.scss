@@ -1,9 +1,10 @@
-@import '../node_modules/normalize-scss/sass/_normalize';
+@import './partials/normalize';
+@import './partials/fonts';
 @import './variables';
 
 /**
  * Main
- * */
+ */
  html,
  body {
    width: 100%;
@@ -11,13 +12,13 @@
  }
  body {
    color: #333;
-   font-family: $opensans;
+   font-family: $nunito;
    background: #fff;
  }
 
  h1, h2, h3,
  h4, h5, h6 {
-   font-family: $opensans;
+   font-family: $nunito;
    text-align: center;
    font-weight: 400;
  }
@@ -27,7 +28,13 @@
  optgroup,
  select,
  textarea {
-   font-family: $opensans;
+    font-family: $nunito;
+    border: none;
+    background: none;
+
+    &:focus {
+      outline: 0;
+    }
  }
 
  a {
@@ -53,7 +60,7 @@
 
  /**
   * main-box
-  **/
+  */
   .app-box {
     position: relative;
   }
@@ -73,7 +80,7 @@
 
   /**
    * btn
-   **/
+   */
   .btn {
     cursor: pointer;
     outline: 0;
@@ -84,7 +91,7 @@
 
  /**
   * Content box
-  * */
+  */
  .content-box {
    max-width: $max-width-app;
    padding: 0 3%;

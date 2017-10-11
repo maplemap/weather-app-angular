@@ -1,21 +1,25 @@
+/**
+ * Main
+ */
 $max-width-app: 700px;
+
+
+/**
+ * Fonts
+ */
+$nunito: 'Nunito', sans-serif;
+$meteocons: 'MeteoconsRegular';
+
 
 /**
  * Mixins
- * */
+ */
  @mixin transition ($transition) {
 	-webkit-transition: all $transition;
 	-moz-transition:    all $transition;
 	-ms-transition:     all $transition;
 	-o-transition:      all $transition;
 }
-
-/**
- * Fonts
- * */
-$opensans: 'Nunito', sans-serif;
-$meteocons: 'MeteoconsRegular';
-
 
 @mixin clear-fix {
   &:after {
