@@ -91,7 +91,9 @@ export class WeatherService {
     console.log(responseData);
 
     const { name, main, weather } = responseData;
-    return new Weather(name, main.temp, weather[0].description, main.temp_min, main.temp_max, weather[0].icon);
+    const temperature = Math.round(main.temp);
+
+    return new Weather(name, temperature, weather[0].description, main.temp_min, main.temp_max, weather[0].icon);
   }
 
   private handleError(error: any): Observable<any> {
