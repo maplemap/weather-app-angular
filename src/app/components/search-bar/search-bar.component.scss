@@ -27,6 +27,7 @@
 
   &__placeholder {
     position: absolute;
+    z-index: -1;
     top: .5em;
     left: 1em;
     font-size: 1.5em;
