@@ -1,0 +1,190 @@
+@import '../../../styles/variables.scss';
+
+.city-card {
+  max-width: $max-width-app;
+  margin: 0 auto;
+
+  &__header {
+    padding: 1.18em 0;
+  }
+
+  &__box {
+    position:relative;
+    font-family: $roboto;
+    box-sizing: border-box;
+    border-radius: 2px;
+    padding: 2em 1em 0 1em;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    @include clear-fix;
+  }
+
+    &__temperature {
+    font-size: 4em;
+    text-align: center;
+
+    span {
+      position: relative;
+      left: -10px;
+      display: inline-block;
+      text-align: center;
+      margin: 0 auto;
+
+      &:before,
+      &::after {
+        display: block;
+        position: absolute;
+      }
+
+      &::before {
+        content: attr(data-deg);
+        top: -13px;
+        right: -17px;
+        font-weight: 300;
+        font-size: 90%;
+      }
+
+      &::after {
+        content: attr(data-unit);
+        bottom: 7px;
+        right: -26px;
+        font-size: 55%;
+      }
+    }
+  }
+
+  &__sky-icon {
+    position: absolute;
+    top: 1em;
+    left: 5%;
+
+    .meteocons {
+      font-size: 7.7em;
+    }
+  }
+
+  &__city-name {
+    width: 74%;
+    font-size: 2em;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 auto .5em auto;
+  }
+
+  &__sky-state {
+    &--city-name {
+      font-size: .5em;
+      text-transform: lowercase;
+      opacity: .7;
+    }
+  }
+
+  &__date-time {
+    position: absolute;
+    top: 1.6em;
+    right: 3%;
+    font-size: 1em;
+    text-align: right;
+  }
+
+  &__time {
+    span {
+      display: block;
+      font-size: 2.5em;
+    }
+  }
+
+  &__info {
+    font-size: .8em;
+    opacity: .7;
+    padding: 0 10%;
+
+    &-list {
+      float: left;
+      width: 45%;
+      margin: 0 2.5% 0 2.5%;
+
+      dt,
+      dd {
+        margin:0;
+        padding:0;
+
+        &::first-letter {
+          text-transform: uppercase;
+        }
+      }
+      dt {
+        float:left;
+        clear: left;
+        font-weight: 700;
+        padding-right:0.5em;
+      }
+    }
+  }
+
+    &__forecasts {
+
+    &-header {
+      font-size: 1em;
+    }
+  }
+
+  &__action {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
+
+    .city-card__forecasts-btn {
+      width: 100%;
+      text-transform: uppercase;
+      font-size: .8em;
+      border: none;
+      padding: .2em 0;
+      background: rgba(0, 0, 0, 0.01);
+    }
+  }
+
+
+  // media query
+  @media screen and (max-width: 31.25em) {
+    .city-card__sky-icon {
+      font-size: 80%;
+    }
+
+    .city-card__temperature {
+      font-size: 3em;
+    }
+
+    .city-card__date-time {
+      font-size: .8em;
+    }
+
+    .city-card__info {
+      font-size: 1em;
+      padding: 0;
+    }
+
+    .city-card__info-list {
+      width: 100%;
+      margin: 0 2.5% 0 2.5%;
+    }
+
+    .city-card__forecasts-header {
+      font-size: 1.5em;
+    }
+  }
+
+  @media screen and (max-width: 28.125em) {
+    .city-card__sky-icon {
+      top: 3em;
+      font-size: 50%;
+    }
+    .city-card__temperature {
+      font-size: 2.7em;
+    }
+    .city-card__date-time {
+      font-size: .7em;
+    }
+  }
+}

@@ -1,1 +1,43 @@
-<p>{{weather.city}}</p>
+<div class="city-card">
+  <h2 class="city-card__header"> Current weather and forecasts in your city</h2>
+  <div class="city-card__box">
+    <div class="city-card__sky-icon">
+      <span class="meteocons" data-icon="0"></span>
+    </div>
+    <div class="city-card__temperature">
+      <span data-deg="°" data-unit="C">-{{ weather.temp }}</span>
+    </div>
+    <div class="city-card__city-name" title="Washington">
+      {{ weather.city }}
+      <div class="city-card__sky-state city-card__sky-state--city-name">
+        {{ weather.type }}
+      </div>
+    </div>
+    <div class="city-card__date-time">
+      <span class="city-card__time">PM
+        <span>12:40</span>
+      </span>
+      <span class="city-card__date">FRI SEP.28</span>
+    </div>
+    <div class="divider"></div>
+    <div class="city-card__info clear-fix">
+      <dl class="city-card__info-list">
+        <dt>Wind:</dt>
+        <dd>Light breeze, 2.0 m/s, West - southwest ( 250 )</dd>
+        <dt>Humidity:</dt>
+        <dd>82 %</dd>
+        <dt>Pressure:</dt>
+        <dd>1016 hpa</dd>
+      </dl>
+      <dl class="city-card__info-list">
+        <dt>Cloudiness:</dt>
+        <dd>{{ weather.type }}</dd>
+        <dt>Sunrise:</dt>
+        <dd>04:11</dd>
+        <dt>Sunset:</dt>
+        <dd>20:58</dd>
+      </dl>
+    </div>
+    <div class="divider"></div>
+  </div>
+</div>
