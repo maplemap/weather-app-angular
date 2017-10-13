@@ -9,7 +9,7 @@
     left: 0;
     opacity: 1;
     z-index: 500000;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(249, 249, 249, 0.3);
 }
 
 .spinner {
@@ -24,7 +24,7 @@
 .spinner > div {
   width: 18px;
   height: 18px;
-  background-color: rgb(29, 29, 29);
+  background-color: #1f1f1f;
 
   border-radius: 100%;
   display: inline-block;
