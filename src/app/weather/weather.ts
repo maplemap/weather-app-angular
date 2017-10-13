@@ -2,9 +2,14 @@ export class Weather {
   constructor(
     public city: string,
     public temp: number,
+    public humidity: number,
+    public pressureInHpa: number,
+    public pressureInMmHg: number,
     public type: string,
-    public tempMin: string,
-    public tempMax: string,
+    public sunrise: string,
+    public sunset: string,
+    public windDirection: string,
+    public windSpeed: string,
     public img: string
   ) {}
 }
