@@ -97,14 +97,15 @@
   }
 
   &__info {
+    display: flex;
+    justify-content: center;
     font-size: .8em;
     opacity: .7;
     padding: 0 10%;
 
     &-list {
-      float: left;
-      width: 45%;
-      margin: 0 2.5% 0 2.5%;
+    width: 50%;
+    margin: 0 5%;
 
       dt,
       dd {
