@@ -23,11 +23,13 @@
     <div class="city-card__info">
       <dl class="city-card__info-list">
         <dt>Wind:</dt>
-        <dd>{{ weather.windDirection }}, {{ weather.windSpeed }} m/s,  [Light breeze,]</dd>
+        <dd>{{ weather.windBeaufortScale | lowercase }}, {{ weather.windSpeed }}m/s, {{ weather.windDirection | lowercase }}</dd>
+         <!-- miles/hour -->
         <dt>Humidity:</dt>
         <dd>{{ weather.humidity }}%</dd>
         <dt>Pressure:</dt>
         <dd>{{ weather.pressureInMmHg }} mmHg</dd>
+         <!-- pressureInInches -->
       </dl>
       <dl class="city-card__info-list">
         <dt>Cloudiness:</dt>

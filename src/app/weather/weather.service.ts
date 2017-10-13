@@ -98,7 +98,7 @@ export class WeatherService {
     const pressureInMmHg = this.helperService.getPressureInMmHg(pressureInHpa);
     const windDegrees = Math.round(wind.deg);
     const windDirection = this.helperService.getWindDirection(windDegrees);
-    const windSpeed = Math.round(wind.speed).toFixed(2);
+    const windBeaufortScale = this.helperService.getWindBeaufortScaleByMeterInSecond(wind.speed);
     const sunriseTime = this.helperService.getTimeFromUnixTimestamp(sys.sunrise);
     const sunsetTime = this.helperService.getTimeFromUnixTimestamp(sys.sunset);
 
@@ -112,7 +112,8 @@ export class WeatherService {
       sunriseTime,
       sunsetTime,
       windDirection,
-      windSpeed,
+      wind.speed,
+      windBeaufortScale,
       weather[0].icon
     );
   }

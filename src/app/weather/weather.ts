@@ -9,7 +9,8 @@ export class Weather {
     public sunrise: string,
     public sunset: string,
     public windDirection: string,
-    public windSpeed: string,
+    public windSpeed: number,
+    public windBeaufortScale: string,
     public img: string
   ) {}
 }
