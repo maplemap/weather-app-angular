@@ -14,6 +14,7 @@ import { weatherRouting } from './routes/weather.routing';
 
 import { WeatherService } from './weather/weather.service';
 import { ResolveLocationService } from './_services/resolve-location.service';
+import { HelperService } from './_services/helper.service';
 import { LoaderService } from './components/loader/loader.service';
 
 @NgModule({
@@ -34,7 +35,8 @@ import { LoaderService } from './components/loader/loader.service';
   providers: [
     WeatherService,
     ResolveLocationService,
-    LoaderService
+    LoaderService,
+    HelperService
   ],
   bootstrap: [AppComponent]
 })

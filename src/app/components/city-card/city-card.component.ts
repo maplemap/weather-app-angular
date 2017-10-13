@@ -10,7 +10,9 @@ import { Weather } from '../../weather/weather';
 export class CityCardComponent implements OnInit {
   @Input() weather: Weather;
 
+  constructor() { }
+
   ngOnInit() {
-    console.log('app-city-card', this.weather);
+
   }
 }

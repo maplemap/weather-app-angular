@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 
 import { LoaderService } from '../components/loader/loader.service';
+import { HelperService } from "../_services/helper.service";
 
 import { Weather } from './weather';
 import { api } from '../config';
@@ -17,7 +18,8 @@ export class WeatherService {
 
   constructor(
     private http: Http,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private helperService: HelperService
   ) { }
 
   getWeatherByСurrentLocation(): Promise<any> {
@@ -90,10 +92,29 @@ export class WeatherService {
   private handleResponseWeatherData(responseData: any): Weather {
     console.log(responseData);
 
-    const { name, main, weather } = responseData;
+    const { name, main, weather, wind, sys } = responseData;
     const temperature = Math.round(main.temp);
+    const pressureInHpa = Math.round(main.pressure);
+    const pressureInMmHg = this.helperService.getPressureInMmHg(pressureInHpa);
+    const windDegrees = Math.round(wind.deg);
+    const windDirection = this.helperService.getWindDirection(windDegrees);
+    const windSpeed = Math.round(wind.speed).toFixed(2);
+    const sunriseTime = this.helperService.getTimeFromUnixTimestamp(sys.sunrise);
+    const sunsetTime = this.helperService.getTimeFromUnixTimestamp(sys.sunset);
 
-    return new Weather(name, temperature, weather[0].description, main.temp_min, main.temp_max, weather[0].icon);
+    return new Weather(
+      name,
+      temperature,
+      main.humidity,
+      pressureInHpa,
+      pressureInMmHg,
+      weather[0].description,
+      sunriseTime,
+      sunsetTime,
+      windDirection,
+      windSpeed,
+      weather[0].icon
+    );
   }
 
   private handleError(error: any): Observable<any> {
