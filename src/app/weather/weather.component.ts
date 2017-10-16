@@ -11,8 +11,6 @@ import { Weather } from './weather';
 })
 export class WeatherComponent implements OnInit {
   weather: Weather;
-  city: string;
-  location: any = {};
 
   constructor(
     private weatherService: WeatherService,
