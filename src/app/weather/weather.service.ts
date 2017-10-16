@@ -31,7 +31,7 @@ export class WeatherService {
 
         this.getWeatherByLocation(latitude, longitude).subscribe((responseData) => {
           this.weather = this.handleResponseWeatherData(responseData);
-          resolve(this.weather);
+          resolve(this.weather.city);
 
           this.hideLoader();
         }
@@ -40,7 +40,7 @@ export class WeatherService {
         if (error.code === 1) {
           this.getWeatherByCity('London').subscribe((responseData) => {
             this.weather = this.handleResponseWeatherData(responseData);
-            resolve(this.weather);
+            resolve(this.weather.city);
 
             this.hideLoader();
           }
@@ -50,6 +50,19 @@ export class WeatherService {
           this.hideLoader();
         }
       });
+    })
+  }
+
+  createResponseWeatherByCity(city: string): Promise<any> { // TODO: I think, It shouldn't be so
+    this.showLoader();
+
+    return new Promise((resolve, reject) => {
+      this.getWeatherByCity(city).subscribe((responseData) => {
+        this.weather = this.handleResponseWeatherData(responseData);
+
+        resolve(this.weather);
+        this.hideLoader();
+      })
     })
   }
 
@@ -89,7 +102,7 @@ export class WeatherService {
       );
   }
 
-  private handleResponseWeatherData(responseData: any): Weather {
+  handleResponseWeatherData(responseData: any): Weather {
     console.log(responseData);
 
     const { name, main, weather, wind, sys } = responseData;

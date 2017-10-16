@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { WeatherService } from './weather.service';
 import { Weather } from './weather';
@@ -11,17 +11,19 @@ import { Weather } from './weather';
 })
 export class WeatherComponent implements OnInit {
   weather: Weather;
-  // weatherClass: Weather;
+  city: string;
   location: any = {};
 
-  constructor(private weatherService: WeatherService, private route: ActivatedRoute) { }
+  constructor(
+    private weatherService: WeatherService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.route.data.subscribe(
       (data: { weather: Weather }) => {
         this.weather = data.weather;
       }
-    )
+    );
   }
-
 }
