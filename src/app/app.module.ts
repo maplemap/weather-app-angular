@@ -10,10 +10,11 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { WeatherComponent } from './weather/weather.component';
 import { LoaderComponent } from './components/loader/loader.component';
 
-import { weatherRouting } from './routes/weather.routing';
+import { appRouting } from './app.routing';
 
 import { WeatherService } from './weather/weather.service';
 import { ResolveLocationService } from './_services/resolve-location.service';
+import { ResolveCityService } from './_services/resolve-city.service';
 import { HelperService } from './_services/helper.service';
 import { LoaderService } from './components/loader/loader.service';
 
@@ -30,11 +31,12 @@ import { LoaderService } from './components/loader/loader.service';
     BrowserModule,
     HttpModule,
     FormsModule,
-    weatherRouting
+    appRouting
   ],
   providers: [
     WeatherService,
     ResolveLocationService,
+    ResolveCityService,
     LoaderService,
     HelperService
   ],
