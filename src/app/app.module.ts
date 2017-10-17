@@ -12,6 +12,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 
 import { appRouting } from './app.routing';
 
+import { AppService } from './app.service';
 import { WeatherService } from './weather/weather.service';
 import { ResolveLocationService } from './_services/resolve-location.service';
 import { ResolveCityService } from './_services/resolve-city.service';
@@ -34,6 +35,7 @@ import { LoaderService } from './components/loader/loader.service';
     appRouting
   ],
   providers: [
+    AppService,
     WeatherService,
     ResolveLocationService,
     ResolveCityService,
