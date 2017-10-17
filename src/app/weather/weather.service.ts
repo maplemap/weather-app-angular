@@ -66,10 +66,10 @@ export class WeatherService {
     })
   }
 
-  getWeatherByLocation(latitude: number, longitude: number): Observable<any> {
+  getWeatherByLocation(latitude: number, longitude: number): Observable<any> {``
     return Observable.interval(this.weatherUpdateInterval).startWith(0)
       .switchMap(() =>
-        this.http.get(`${api.host}/weather?appid=${api.appid}&lat=${latitude}&lon=${longitude}&units=${api.units}`)
+        this.http.get(`${api.host}/weather?appid=${api.appid}&lat=${latitude}&lon=${longitude}&units=${api.defaultUnit}`)
           .map((response: Response) => response.json())
           .catch(this.handleError)
       );
@@ -78,7 +78,7 @@ export class WeatherService {
   getWeatherByCity(city: string): Observable<any> {
     return Observable.interval(this.weatherUpdateInterval).startWith(0)
       .switchMap(() =>
-        this.http.get(`${api.host}/weather?appid=${api.appid}&q=${city}&units=${api.units}`)
+        this.http.get(`${api.host}/weather?appid=${api.appid}&q=${city}&units=${api.defaultUnit}`)
           .map((response: Response) => response.json())
           .catch(this.handleError)
       );
@@ -87,7 +87,7 @@ export class WeatherService {
   getForecastByLocation(latitude: number, longitude: number): Observable<any> {
     return Observable.interval(this.forecastUpdateInterval).startWith(0)
       .switchMap(() =>
-        this.http.get(`${api.host}/forecast?appid=${api.appid}&lat=${latitude}&lon=${longitude}&units=${api.units}&cnt=${api.amountForecastDays}`)
+        this.http.get(`${api.host}/forecast?appid=${api.appid}&lat=${latitude}&lon=${longitude}&units=${api.defaultUnit}&cnt=${api.amountForecastDays}`)
           .map((response: Response) => response.json())
           .catch(this.handleError)
       );
@@ -96,7 +96,7 @@ export class WeatherService {
   getForecastByCity(city: string): Observable<any> {
     return Observable.interval(this.forecastUpdateInterval).startWith(0)
       .switchMap(() =>
-        this.http.get(`${api.host}/forecast?q=${city},us&appid=${api.appid}&units=${api.units}&cnt=${api.amountForecastDays}`)
+        this.http.get(`${api.host}/forecast?q=${city},us&appid=${api.appid}&units=${api.defaultUnit}&cnt=${api.amountForecastDays}`)
           .map((response: Response) => response.json())
           .catch(this.handleError)
       );
