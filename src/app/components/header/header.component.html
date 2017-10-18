@@ -5,7 +5,7 @@
       </a>
       <h1 class="header__brand">forecast</h1>
       <div class="header__unit-switcher">
-        <input (change)="onChangeUnitSwitcher($event)" type="checkbox">
+        <input [(ngModel)]="!isUnitSwitcherChecked" (change)="onChangeUnitSwitcher()" type="checkbox" value="asdas">
       </div>
   </div>
 </div>

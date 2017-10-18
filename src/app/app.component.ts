@@ -1,23 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { AppService } from './app.service';
-import { api } from './config';
+import { AppService } from "./app.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  unitSystem: string;
 
   constructor(
     private appService: AppService
   ) {}
 
-  changeUnit(unitStatus: boolean) {
-    const unitStatusInteger = +unitStatus;
-    const unit = api.units[unitStatusInteger];
+  ngOnInit() {
+    this.unitSystem = this.appService.unitSystem;
+  }
 
-    this.appService.updateUnitSystem(unit);
+  changeUnit(unitStatus: boolean) {
+    this.appService.updateUnitSystem(unitStatus);
   }
 }
