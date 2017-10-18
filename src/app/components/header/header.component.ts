@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { api } from '../../config';
+import { appConfig } from '../../config';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   isUnitSwitcherChecked: boolean = false;
 
   ngOnInit() {
-    this.isUnitSwitcherChecked = this.unitSystem === api.defaultUnit;
+    this.isUnitSwitcherChecked = this.unitSystem === appConfig.defaultUnit;
   }
 
   onChangeUnitSwitcher() {

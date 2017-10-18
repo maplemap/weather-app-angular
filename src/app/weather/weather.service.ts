@@ -9,7 +9,7 @@ import { LoaderService } from '../components/loader/loader.service';
 import { HelperService } from "../_services/helper.service";
 
 import { Weather } from './weather';
-import { api } from '../config';
+import { apiConfig } from '../config';
 
 @Injectable()
 export class WeatherService {
@@ -74,7 +74,7 @@ export class WeatherService {
   getWeatherByLocation(latitude: number, longitude: number): Observable<any> {``
     return Observable.interval(this.weatherUpdateInterval).startWith(0)
       .switchMap(() =>
-        this.http.get(`${api.host}/weather?appid=${api.appid}&lat=${latitude}&lon=${longitude}&units=${this.unitSystem}`)
+        this.http.get(`${apiConfig.host}/weather?appid=${apiConfig.appid}&lat=${latitude}&lon=${longitude}&units=${this.unitSystem}`)
           .map((response: Response) => response.json())
           .catch(this.handleError)
       );
@@ -83,7 +83,7 @@ export class WeatherService {
   getWeatherByCity(city: string): Observable<any> {
     return Observable.interval(this.weatherUpdateInterval).startWith(0)
       .switchMap(() =>
-        this.http.get(`${api.host}/weather?appid=${api.appid}&q=${city}&units=${this.unitSystem}`)
+        this.http.get(`${apiConfig.host}/weather?appid=${apiConfig.appid}&q=${city}&units=${this.unitSystem}`)
           .map((response: Response) => response.json())
           .catch(this.handleError)
       );
@@ -92,7 +92,7 @@ export class WeatherService {
   getForecastByLocation(latitude: number, longitude: number): Observable<any> {
     return Observable.interval(this.forecastUpdateInterval).startWith(0)
       .switchMap(() =>
-        this.http.get(`${api.host}/forecast?appid=${api.appid}&lat=${latitude}&lon=${longitude}&units=${this.unitSystem}&cnt=${api.amountForecastDays}`)
+        this.http.get(`${apiConfig.host}/forecast?appid=${apiConfig.appid}&lat=${latitude}&lon=${longitude}&units=${this.unitSystem}&cnt=${apiConfig.amountForecastDays}`)
           .map((response: Response) => response.json())
           .catch(this.handleError)
       );
@@ -101,7 +101,7 @@ export class WeatherService {
   getForecastByCity(city: string): Observable<any> {
     return Observable.interval(this.forecastUpdateInterval).startWith(0)
       .switchMap(() =>
-        this.http.get(`${api.host}/forecast?q=${city},us&appid=${api.appid}&units=${this.unitSystem}&cnt=${api.amountForecastDays}`)
+        this.http.get(`${apiConfig.host}/forecast?q=${city},us&appid=${apiConfig.appid}&units=${this.unitSystem}&cnt=${apiConfig.amountForecastDays}`)
           .map((response: Response) => response.json())
           .catch(this.handleError)
       );
