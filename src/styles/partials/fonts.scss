@@ -1,12 +1,2 @@
 @import url(http://fonts.googleapis.com/css?family=Nunito:400,300,700|Roboto:300,400,700);
-
-@font-face {
-  font-family: 'MeteoconsRegular';
-  src: url('../fonts/meteocons-webfont.eot');
-  src: url('../fonts/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/meteocons-webfont.woff') format('woff'),
-       url('../fonts/meteocons-webfont.ttf') format('truetype'),
-       url('../fonts/meteocons-webfont.svg#MeteoconsRegular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
+@import '../../node_modules/weather-icons/css/weather-icons.min.css';
