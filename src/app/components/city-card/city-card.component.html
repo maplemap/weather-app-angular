@@ -5,7 +5,7 @@
       <span class="wi wi-day-sunny"></span>
     </div>
     <div class="city-card__temperature">
-      <span data-deg="°" data-unit="C">{{ weather.temp }}</span>
+      <span data-deg="°" [attr.data-unit]="measureOfTemp">{{ weather.temp }}</span>
     </div>
     <div class="city-card__city-name" title="Washington">
       {{ weather.city }}
@@ -23,12 +23,12 @@
     <div class="city-card__info">
       <dl class="city-card__info-list">
         <dt>Wind:</dt>
-        <dd>{{ weather.windBeaufortScale | lowercase }}, {{ weather.windSpeed }}m/s, {{ weather.windDirection | lowercase }}</dd>
+        <dd>{{ weather.windBeaufortScale | lowercase }}, {{ weather.windDirection | lowercase }}, {{ weather.windSpeed }} {{ measureOfWindSpeed }}</dd>
          <!-- miles/hour -->
         <dt>Humidity:</dt>
         <dd>{{ weather.humidity }}%</dd>
         <dt>Pressure:</dt>
-        <dd>{{ weather.pressureInMmHg }} mmHg</dd>
+        <dd>{{ weather.pressureInMmHg }} {{ measureOfPressure }}</dd>
          <!-- pressureInInches -->
       </dl>
       <dl class="city-card__info-list">

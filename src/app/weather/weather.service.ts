@@ -9,7 +9,7 @@ import { LoaderService } from '../components/loader/loader.service';
 import { HelperService } from "../_services/helper.service";
 
 import { Weather } from './weather';
-import { apiConfig } from '../config';
+import { apiConfig, appConfig } from '../config';
 
 @Injectable()
 export class WeatherService {
@@ -107,15 +107,15 @@ export class WeatherService {
       );
   }
 
-  handleResponseWeatherData(responseData: any): Weather {
+  private handleResponseWeatherData(responseData: any): Weather {
     console.log(responseData);
 
     const { name, main, weather, wind, sys } = responseData;
     const temperature = Math.round(main.temp);
     const pressureInHpa = Math.round(main.pressure);
-    const pressureInMmHg = this.helperService.getPressureInMmHg(pressureInHpa);
+    const pressureInMmHg = (this.unitSystem === appConfig.defaultUnit) ? this.helperService.getPressureInMmHg(pressureInHpa) : pressureInHpa;
     const windDegrees = Math.round(wind.deg);
-    const windDirection = this.helperService.getWindDirection(windDegrees);
+    const windDirection =  this.helperService.getWindDirection(windDegrees);
     const windBeaufortScale = this.helperService.getWindBeaufortScaleByMeterInSecond(wind.speed);
     const sunriseTime = this.helperService.getTimeFromUnixTimestamp(sys.sunrise);
     const sunsetTime = this.helperService.getTimeFromUnixTimestamp(sys.sunset);

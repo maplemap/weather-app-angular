@@ -11,11 +11,14 @@ import { Weather } from './weather';
 })
 export class WeatherComponent implements OnInit {
   weather: Weather;
+  unitSystem: string;
 
   constructor(
     private weatherService: WeatherService,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    this.unitSystem = weatherService.unitSystem;
+  }
 
   ngOnInit() {
     this.route.data.subscribe(
