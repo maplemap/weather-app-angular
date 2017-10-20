@@ -10,12 +10,14 @@ import { HelperService } from "../_services/helper.service";
 
 import { Weather } from './weather';
 import { apiConfig, appConfig } from '../config';
+import * as wiDataByCode from '../data/wi-codes.data.json';
 
 @Injectable()
 export class WeatherService {
   weatherUpdateInterval: number = 300000;
   forecastUpdateInterval: number = 900000;
   weather: Weather;
+  wiDataByCode: any;
   unitSystem: string
 
   constructor(
@@ -25,6 +27,7 @@ export class WeatherService {
     private helperService: HelperService
   ) {
     this.unitSystem = appService.unitSystem;
+    this.wiDataByCode = wiDataByCode;
   }
 
   getWeatherByСurrentLocation(): Promise<any> {
@@ -108,32 +111,49 @@ export class WeatherService {
   }
 
   private handleResponseWeatherData(responseData: any): Weather {
+    const { name, main, weather, wind, sys } = responseData;
     console.log(responseData);
 
-    const { name, main, weather, wind, sys } = responseData;
+
+    const iconClassname = this.getIconClassNameByCode(weather[0].id, sys.sunset);
     const temperature = Math.round(main.temp);
     const pressureInHpa = Math.round(main.pressure);
     const pressureInMmHg = (this.unitSystem === appConfig.defaultUnit) ? this.helperService.getPressureInMmHg(pressureInHpa) : pressureInHpa;
     const windDegrees = Math.round(wind.deg);
     const windDirection =  this.helperService.getWindDirection(windDegrees);
     const windBeaufortScale = this.helperService.getWindBeaufortScaleByMeterInSecond(wind.speed);
+    const descriptionByCode = this.wiDataByCode[weather[0].id].label;
     const sunriseTime = this.helperService.getTimeFromUnixTimestamp(sys.sunrise);
     const sunsetTime = this.helperService.getTimeFromUnixTimestamp(sys.sunset);
 
     return new Weather(
       name,
+      iconClassname,
       temperature,
       main.humidity,
       pressureInHpa,
       pressureInMmHg,
       weather[0].description,
+      descriptionByCode,
       sunriseTime,
       sunsetTime,
       windDirection,
       wind.speed,
-      windBeaufortScale,
-      weather[0].icon
+      windBeaufortScale
     );
+  }
+
+  private getIconClassNameByCode(code: number, sunsetTimestamp: number): string {
+    const classPrefix = 'wi wi-';
+    const iconClassname = this.wiDataByCode[code].icon;
+    let dayPrefix = 'day-';
+
+    if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
+      const dateNowTimestamp = Math.round(Date.now()/1000);
+      dayPrefix = (dateNowTimestamp > sunsetTimestamp) ? 'night-' : dayPrefix;
+    }
+
+    return `${classPrefix}${dayPrefix}${iconClassname}`;
   }
 
   private handleError(error: any): Observable<any> {

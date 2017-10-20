@@ -55,11 +55,11 @@
 
   &__sky-icon {
     position: absolute;
-    top: 1em;
-    left: 5%;
+    top: 2.5em;
+    left: 8%;
 
     .wi {
-      font-size: 7.7em;
+      font-size: 6em;
     }
   }
 
@@ -172,7 +172,7 @@
     }
   }
 
-  @media screen and (max-width: 28.125em) {
+  @media screen and (max-width: 33.125em) {
     .city-card__sky-icon {
       top: 3em;
       font-size: 50%;
