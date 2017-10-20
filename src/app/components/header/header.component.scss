@@ -5,19 +5,21 @@
 
   &__wrapper {
     display: flex;
-    width: 100%;
+    width: 94%;
     max-width: $max-width-app;
     height: 4em;
     line-height: 4em;
+    padding: 0 3%;
     margin: 0 auto;
   }
 
   &__logo {
     display: inline-block;
+    line-height: 5.1em;
     margin-right: .5em;
 
-    .meteocons {
-      font-size: 2.8em;
+    .wi {
+      font-size: 2.1em;
     }
   }
 

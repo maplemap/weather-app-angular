@@ -2,7 +2,7 @@
   <h2 class="city-card__header"> Current weather and forecasts in your city</h2>
   <div class="city-card__box">
     <div class="city-card__sky-icon">
-      <span class="meteocons" data-icon="0"></span>
+      <span [attr.class]="weather.iconClassname"></span>
     </div>
     <div class="city-card__temperature">
       <span data-deg="°" [attr.data-unit]="measureOfTemp">{{ weather.temp }}</span>
@@ -10,7 +10,7 @@
     <div class="city-card__city-name" title="Washington">
       {{ weather.city }}
       <div class="city-card__sky-state city-card__sky-state--city-name">
-        {{ weather.type }}
+        {{ weather.descriptionByCode }}
       </div>
     </div>
     <div class="city-card__date-time">
@@ -24,16 +24,14 @@
       <dl class="city-card__info-list">
         <dt>Wind:</dt>
         <dd>{{ weather.windBeaufortScale | lowercase }}, {{ weather.windDirection | lowercase }}, {{ weather.windSpeed }} {{ measureOfWindSpeed }}</dd>
-         <!-- miles/hour -->
         <dt>Humidity:</dt>
         <dd>{{ weather.humidity }}%</dd>
         <dt>Pressure:</dt>
         <dd>{{ weather.pressureInMmHg }} {{ measureOfPressure }}</dd>
-         <!-- pressureInInches -->
       </dl>
       <dl class="city-card__info-list">
         <dt>Cloudiness:</dt>
-        <dd>{{ weather.type }}</dd>
+        <dd>{{ weather.description }}</dd>
         <dt>Sunrise:</dt>
         <dd>{{ weather.sunrise }}</dd>
         <dt>Sunset:</dt>
