@@ -5,20 +5,21 @@
 
   &__wrapper {
     display: flex;
-    width: 100%;
+    width: 94%;
     max-width: $max-width-app;
     height: 4em;
     line-height: 4em;
+    padding: 0 3%;
     margin: 0 auto;
   }
 
   &__logo {
     display: inline-block;
-    line-height: 4.8em;
+    line-height: 5.1em;
     margin-right: .5em;
 
     .wi {
-      font-size: 1.8em;
+      font-size: 2.1em;
     }
   }
 
