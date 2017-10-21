@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 
@@ -14,11 +15,12 @@ import * as wiDataByCode from '../data/wi-codes.data.json';
 
 @Injectable()
 export class WeatherService {
-  weatherUpdateInterval: number = 300000;
-  forecastUpdateInterval: number = 900000;
   weather: Weather;
+  weatherChange: Subject<Weather> = new Subject<Weather>();
   wiDataByCode: any;
-  unitSystem: string
+  unitSystem: string;
+  weatherUpdateInterval: number = 300000; // 5 minutes
+  forecastUpdateInterval: number = 900000;
 
   constructor(
     private http: Http,
@@ -28,18 +30,25 @@ export class WeatherService {
   ) {
     this.unitSystem = appService.unitSystem;
     this.wiDataByCode = wiDataByCode;
+
+    this.weatherChange.subscribe((weather) => {
+      this.weather = weather;
+      console.log(this.weather);
+    });
   }
 
   getWeatherByСurrentLocation(): Promise<any> {
     this.showLoader();
 
     return new Promise((resolve, reject) => {
-      window.navigator.geolocation.getCurrentPosition(async (position) => {
+      window.navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
 
         this.getWeatherByLocation(latitude, longitude).subscribe((responseData) => {
-          this.weather = this.handleResponseWeatherData(responseData);
-          resolve(this.weather.city);
+          const weather = this.handleResponseWeatherData(responseData);
+
+          this.weatherChange.next(weather);
+          resolve(weather.city);
 
           this.hideLoader();
         }
@@ -47,8 +56,10 @@ export class WeatherService {
       }, (error) => {
         if (error.code === 1) {
           this.getWeatherByCity('London').subscribe((responseData) => {
-            this.weather = this.handleResponseWeatherData(responseData);
-            resolve(this.weather.city);
+            const weather = this.handleResponseWeatherData(responseData);
+
+            this.weatherChange.next(weather);
+            resolve(weather.city);
 
             this.hideLoader();
           }
@@ -66,15 +77,17 @@ export class WeatherService {
 
     return new Promise((resolve, reject) => {
       this.getWeatherByCity(city).subscribe((responseData) => {
-        this.weather = this.handleResponseWeatherData(responseData);
+        const weather = this.handleResponseWeatherData(responseData);
 
-        resolve(this.weather);
+        this.weatherChange.next(weather);
+        resolve(weather);
+
         this.hideLoader();
       })
     })
   }
 
-  getWeatherByLocation(latitude: number, longitude: number): Observable<any> {``
+  getWeatherByLocation(latitude: number, longitude: number): Observable<any> {
     return Observable.interval(this.weatherUpdateInterval).startWith(0)
       .switchMap(() =>
         this.http.get(`${apiConfig.host}/weather?appid=${apiConfig.appid}&lat=${latitude}&lon=${longitude}&units=${this.unitSystem}`)
@@ -122,7 +135,6 @@ export class WeatherService {
     const windDegrees = Math.round(wind.deg);
     const windDirection =  this.helperService.getWindDirection(windDegrees);
     const windBeaufortScale = this.helperService.getWindBeaufortScaleByMeterInSecond(wind.speed);
-    const descriptionByCode = this.wiDataByCode[weather[0].id].label;
     const sunriseTime = this.helperService.getTimeFromUnixTimestamp(sys.sunrise);
     const sunsetTime = this.helperService.getTimeFromUnixTimestamp(sys.sunset);
 
@@ -134,7 +146,6 @@ export class WeatherService {
       pressureInHpa,
       pressureInMmHg,
       weather[0].description,
-      descriptionByCode,
       sunriseTime,
       sunsetTime,
       windDirection,
