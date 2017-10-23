@@ -7,7 +7,6 @@ export class Weather {
     public pressureInHpa: number,
     public pressureInMmHg: number,
     public description: string,
-    public descriptionByCode: string,
     public sunrise: string,
     public sunset: string,
     public windDirection: string,

@@ -23,8 +23,14 @@ export class WeatherComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: { weather: Weather }) => {
+        console.log('route suscribe', data.weather, new Date());
         this.weather = data.weather;
       }
     );
+
+    this.weatherService.weatherChange.subscribe(weather => {
+      console.log('weatheChangeSubscribe', weather, new Date());
+      this.weather = weather;
+    });
   }
 }
