@@ -19,6 +19,8 @@ import { ResolveLocationService } from './_services/resolve-location.service';
 import { ResolveCityService } from './_services/resolve-city.service';
 import { HelperService } from './_services/helper.service';
 import { LoaderService } from './components/loader/loader.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { LoaderService } from './components/loader/loader.service';
     CityCardComponent,
     SearchBarComponent,
     WeatherComponent,
-    LoaderComponent
+    LoaderComponent,
+    NotFoundComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
