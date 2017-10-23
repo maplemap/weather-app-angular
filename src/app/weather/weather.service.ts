@@ -83,6 +83,9 @@ export class WeatherService {
         resolve(weather);
 
         this.hideLoader();
+      }, (error) => {
+        reject(error);
+        this.hideLoader();
       })
     })
   }
