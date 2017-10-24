@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,13 +9,20 @@ import { Component } from '@angular/core';
 export class SearchBarComponent {
   searchText: string = '';
 
+  constructor(
+    private router: Router
+  ) { };
+
   onClickCleanBtn() {
     this.searchText = '';
   }
 
   onKeyPress(e: any) {
     if (e.keyCode === 13 && e.target.value) {
-      console.log(e.target.value);
+      const city = e.target.value;
+
+      this.router.navigate([`/${city}`]);
+      this.searchText = '';
     }
   }
 }
