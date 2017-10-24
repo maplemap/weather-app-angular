@@ -12,10 +12,6 @@ export class ResolveCityService implements Resolve<any> {
   ) { };
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> | Promise<any> | any {
-    if (this.weatherService.weather) {
-      return this.weatherService.weather;
-    }
-
     return this.weatherService.createResponseWeatherByCity(route.params.city)
       .catch((error) => {
         if (error.status === 404) {
