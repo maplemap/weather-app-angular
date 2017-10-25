@@ -13,7 +13,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { appRouting } from './app.routing';
 
 import { AppService } from './app.service';
-import { UiSwitchModule } from 'angular2-ui-switch';
+import { UiSwitchModule } from '../../node_modules/angular2-ui-switch/src';
 import { LocalStorageService } from './_services/localstorage.service';
 import { WeatherService } from './weather/weather.service';
 import { ResolveLocationService } from './_services/resolve-location.service';
