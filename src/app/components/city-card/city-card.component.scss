@@ -53,6 +53,17 @@
     }
   }
 
+  &__updated-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #b5b5b5;
+    font-size: .7em;
+    font-weight: 300;
+    padding: .5em 0;
+    margin-right: 3%;
+  }
+
   &__sky-icon {
     position: absolute;
     top: 2.5em;

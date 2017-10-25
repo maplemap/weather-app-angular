@@ -1,5 +1,6 @@
 export class Weather {
   constructor(
+    public updateAtHHMM: string,
     public city: string,
     public iconClassname: string,
     public temp: number,
