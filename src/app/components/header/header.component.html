@@ -4,8 +4,16 @@
         <span class="wi wi-day-sunny"></span>
       </a>
       <h1 class="header__brand">forecast</h1>
-      <div class="header__unit-switcher">
-        <input [(ngModel)]="!isUnitSwitcherChecked" (change)="onChangeUnitSwitcher()" type="checkbox" value="asdas">
+      <div class="header__right-block">
+        C
+        <ui-switch
+          class="header__unit-switcher"
+          size="small"
+          color="#B5B5B5"
+          [checked]="!isUnitSwitcherChecked"
+          (change)="onChangeUnitSwitcher()">
+        </ui-switch>
+        F
       </div>
   </div>
 </div>

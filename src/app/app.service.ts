@@ -17,6 +17,6 @@ export class AppService {
     const unitSystem = Object.keys(apiConfig.measurementUnits)[unitStatusInteger];
 
     this.localStorageSevice.set('unit', unitSystem);
-    window.location.reload();
+    setTimeout(() => window.location.reload(), 300);
   }
 }

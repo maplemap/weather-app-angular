@@ -27,7 +27,15 @@
     font-size: 1.3em;
   }
 
-  &__unit-switcher {
+  &__right-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: auto;
+  }
+
+  &__unit-switcher {
+    display: flex;
+    margin: 0 .3em;
   }
 }
