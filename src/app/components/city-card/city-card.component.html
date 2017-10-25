@@ -2,7 +2,7 @@
   <h2 class="city-card__header"> Current weather and forecasts in your city</h2>
   <div class="city-card__box">
     <div class="city-card__updated-label">
-      last update at: {{weather.updateAtHHMM}}
+      last update at: <span>{{weather.updateAt | date: 'HH:mm:ss'}}</span>
     </div>
     <div class="city-card__sky-icon">
       <span [attr.class]="weather.iconClassname"></span>
@@ -17,9 +17,7 @@
       </div>
     </div>
     <div class="city-card__date-time">
-      <span class="city-card__time">PMs
-        <span>12:40</span>
-      </span>
+      <span class="city-card__time">12:40</span>
       <span class="city-card__date">FRI SEP.28</span>
     </div>
     <div class="divider"></div>
@@ -36,9 +34,9 @@
         <dt>Cloudiness:</dt>
         <dd>{{ weather.description }}</dd>
         <dt>Sunrise:</dt>
-        <dd>{{ weather.sunrise }}</dd>
+        <dd>{{ weather.sunrise | date: 'HH:mm' }}</dd>
         <dt>Sunset:</dt>
-        <dd>{{ weather.sunset }}</dd>
+        <dd>{{ weather.sunset | date: 'HH:mm' }}</dd>
       </dl>
     </div>
     <div class="divider"></div>

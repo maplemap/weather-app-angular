@@ -130,7 +130,7 @@ export class WeatherService {
     const { name, main, weather, wind, sys } = responseData;
     console.log(responseData);
 
-    const updateAtHHMM = this.helperService.getCurrentTimeinHHMM();
+    const updateAt = new Date().getTime();
     const iconClassname = this.getIconClassNameByCode(weather[0].id, sys.sunset);
     const temperature = Math.round(main.temp);
     const pressureInHpa = Math.round(main.pressure);
@@ -138,11 +138,11 @@ export class WeatherService {
     const windDegrees = Math.round(wind.deg);
     const windDirection =  this.helperService.getWindDirection(windDegrees);
     const windBeaufortScale = this.helperService.getWindBeaufortScaleByMeterInSecond(wind.speed);
-    const sunriseTime = this.helperService.getTimeFromUnixTimestamp(sys.sunrise);
-    const sunsetTime = this.helperService.getTimeFromUnixTimestamp(sys.sunset);
+    const sunriseTime = sys.sunrise * 1000;
+    const sunsetTime = sys.sunset * 1000;
 
     return new Weather(
-      updateAtHHMM,
+      updateAt,
       name,
       iconClassname,
       temperature,

@@ -4,22 +4,6 @@ import { Injectable } from '@angular/core';
 export class HelperService {
   constructor() {}
 
-  getTimeFromUnixTimestamp(timestamp: number): string {
-    const date = new Date(timestamp * 1000);
-    const hours = '0' + date.getHours();
-    const minutes = '0' + date.getMinutes();
-
-    return `${hours.substr(-2)}:${minutes.substr(-2)}`;
-  }
-
-  getCurrentTimeinHHMM(): string {
-    const today = new Date();
-    const hours = '0' + today.getHours();
-    const minutes = '0' + today.getMinutes();
-
-    return `${hours.substr(-2)}:${minutes.substr(-2)}`;
-  }
-
   getWindDirection(windDegree: number): string {
     const windDirectionIndex = Math.round((windDegree - 11.25) / 22.5);
     const windNames = ['North', 'North Northeast', 'Northeast', 'East Northeast', 'East', 'East Southeast', 'Southeast', 'South Southeast', 'South', 'South Southwest', 'Southwest', 'West Southwest', 'West', 'West Northwest', 'Northwest', 'North Northwest'];

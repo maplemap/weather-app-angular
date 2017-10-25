@@ -1,6 +1,6 @@
 export class Weather {
   constructor(
-    public updateAtHHMM: string,
+    public updateAt: number,
     public city: string,
     public iconClassname: string,
     public temp: number,
@@ -8,8 +8,8 @@ export class Weather {
     public pressureInHpa: number,
     public pressureInMmHg: number,
     public description: string,
-    public sunrise: string,
-    public sunset: string,
+    public sunrise: number,
+    public sunset: number,
     public windDirection: string,
     public windSpeed: number,
     public windBeaufortScale: string
