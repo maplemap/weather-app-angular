@@ -55,13 +55,24 @@
 
   &__updated-label {
     position: absolute;
-    top: 0;
+    top: .8em;
     right: 0;
-    color: #b5b5b5;
-    font-size: .7em;
+    width: 20%;
+    color: #9a9a9a;
+    font-size: .5em;
     font-weight: 300;
-    padding: .5em 0;
-    margin-right: 3%;
+    text-align: right;
+    text-transform: uppercase;
+    opacity: .8;
+    padding: .3em 3% .2em 0%;
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0), #f7f5f5);
+    background: -ms-linear-gradient(left, rgba(255, 255, 255, 0), #f7f5f5);
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #f7f5f5);
+
+    span {
+      color: #656565;
+      font-size: 1.3em;
+    }
   }
 
   &__sky-icon {
@@ -101,10 +112,14 @@
   }
 
   &__time {
-    span {
-      display: block;
-      font-size: 2.5em;
-    }
+    display: block;
+    font-size: 2.5em;
+  }
+
+  &__date {
+    display: block;
+    text-transform: uppercase;
+    margin-right: .1em;
   }
 
   &__info {
