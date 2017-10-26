@@ -160,12 +160,17 @@ export class WeatherService {
 
   private getIconClassNameByCode(code: number, sunsetTimestamp: number): string {
     const classPrefix = 'wi wi-';
-    const iconClassname = this.wiDataByCode[code].icon;
+    let iconClassname = this.wiDataByCode[code].icon;
     let dayPrefix = 'day-';
 
     if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
       const dateNowTimestamp = Math.round(Date.now()/1000);
       dayPrefix = (dateNowTimestamp > sunsetTimestamp) ? 'night-' : dayPrefix;
+
+      if (dateNowTimestamp > sunsetTimestamp && iconClassname === 'sunny') {
+        dayPrefix = 'night-clear';
+        iconClassname = '';
+      }
     }
 
     return `${classPrefix}${dayPrefix}${iconClassname}`;
