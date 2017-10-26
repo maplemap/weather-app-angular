@@ -22,6 +22,8 @@ import { HelperService } from './_services/helper.service';
 import { LoaderService } from './components/loader/loader.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ErrorComponent } from './components/error/error.component';
+import { ClockComponent } from './components/clock/clock.component';
+import { ClockService } from './components/clock/clock.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ErrorComponent } from './components/error/error.component';
     WeatherComponent,
     LoaderComponent,
     NotFoundComponent,
-    ErrorComponent
+    ErrorComponent,
+    ClockComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { ErrorComponent } from './components/error/error.component';
     ResolveLocationService,
     ResolveCityService,
     LoaderService,
-    HelperService
+    HelperService,
+    ClockService
   ],
   bootstrap: [AppComponent]
 })
