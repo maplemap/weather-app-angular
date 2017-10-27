@@ -7,7 +7,7 @@ export class ClockService {
   private clock: Observable<Date>;
 
   constructor() {
-    this.clock = Observable.interval(1000).map(tick => new Date()).share();
+    this.clock = Observable.interval(1000).startWith(0).map(tick => new Date()).share();
   }
 
   getClock(): Observable<Date> {
