@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./clock.component.scss']
 })
 export class ClockComponent implements OnInit, OnDestroy {
-
   private _clockSubscription: Subscription;
   time: Date;
 
@@ -21,5 +20,4 @@ export class ClockComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._clockSubscription.unsubscribe();
   }
-
 }
