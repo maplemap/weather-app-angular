@@ -15,12 +15,13 @@ import * as wiDataByCode from '../data/wi-codes.data.json';
 
 @Injectable()
 export class WeatherService {
-  weather: Weather;
-  weatherChange: Subject<Weather> = new Subject<Weather>();
-  wiDataByCode: any;
-  unitSystem: string;
-  weatherUpdateInterval: number = 300000; // 5 minutes
-  forecastUpdateInterval: number = 900000;
+  private weather: Weather;
+  private unitSystem: string;
+  private _weatherSubscription: Subject<Weather> = new Subject<Weather>();
+  public subscribers: any = {};
+  private wiDataByCode: any;
+  private weatherUpdateInterval: number = 5000; // 5 minutes
+  private forecastUpdateInterval: number = 900000;
 
   constructor(
     private http: Http,
@@ -30,24 +31,25 @@ export class WeatherService {
   ) {
     this.unitSystem = appService.unitSystem;
     this.wiDataByCode = wiDataByCode;
+  }
 
-    this.weatherChange.subscribe((weather) => {
-      this.weather = weather;
-      console.log(this.weather);
-    });
+  getWeather(): Subject<Weather> {
+    return this._weatherSubscription;
+  }
+
+  getUnitSystem(): string {
+    return this.unitSystem;
   }
 
   getWeatherByСurrentLocation(): Promise<any> {
     this.showLoader();
+    if (this.subscribers.city) this.subscribers.city.unsubscribe(); // TODO: I think, It shouldn't be so
 
     return new Promise((resolve, reject) => {
       window.navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
 
-        this.getWeatherByLocation(latitude, longitude).subscribe((responseData) => {
-          const weather = this.handleResponseWeatherData(responseData);
-
-          this.weatherChange.next(weather);
+        this.subscribers.city = this.getWeatherByLocation(latitude, longitude).subscribe((weather) => {
           resolve(weather.city);
 
           this.hideLoader();
@@ -55,10 +57,7 @@ export class WeatherService {
         );
       }, (error) => {
         if (error.code === 1) {
-          this.getWeatherByCity('London').subscribe((responseData) => {
-            const weather = this.handleResponseWeatherData(responseData);
-
-            this.weatherChange.next(weather);
+          this.subscribers.city = this.getWeatherByCity('London').subscribe((weather) => {
             resolve(weather.city);
 
             this.hideLoader();
@@ -74,12 +73,11 @@ export class WeatherService {
 
   createResponseWeatherByCity(city: string): Promise<any> { // TODO: I think, It shouldn't be so
     this.showLoader();
+    if (this.subscribers.city) this.subscribers.city.unsubscribe(); // TODO: I think, It shouldn't be so
+
 
     return new Promise((resolve, reject) => {
-      this.getWeatherByCity(city).subscribe((responseData) => {
-        const weather = this.handleResponseWeatherData(responseData);
-
-        this.weatherChange.next(weather);
+      this.subscribers.city = this.getWeatherByCity(city).subscribe((weather) => {
         resolve(weather);
 
         this.hideLoader();
@@ -95,16 +93,29 @@ export class WeatherService {
       .switchMap(() =>
         this.http.get(`${apiConfig.host}/weather?appid=${apiConfig.appid}&lat=${latitude}&lon=${longitude}&units=${this.unitSystem}`)
           .map((response: Response) => response.json())
+          .map((data) => {
+            const weather = this.handleResponseWeatherData(data);
+
+            this._weatherSubscription.next(weather);
+            return weather;
+          })
           .catch(this.handleError)
       );
   }
 
   getWeatherByCity(city: string): Observable<any> {
-    return Observable.interval(this.weatherUpdateInterval).startWith(0)
-      .switchMap(() =>
-        this.http.get(`${apiConfig.host}/weather?appid=${apiConfig.appid}&q=${city}&units=${this.unitSystem}`)
+     return Observable.interval(this.weatherUpdateInterval).startWith(0)
+      .switchMap(() => {
+        return this.http.get(`${apiConfig.host}/weather?appid=${apiConfig.appid}&q=${city}&units=${this.unitSystem}`)
           .map((response: Response) => response.json())
+          .map((data) => {
+            const weather = this.handleResponseWeatherData(data);
+
+            this._weatherSubscription.next(weather);
+            return weather;
+          })
           .catch(this.handleError)
+      }
       );
   }
 
