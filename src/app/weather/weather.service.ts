@@ -20,7 +20,7 @@ export class WeatherService {
   private _weatherSubscription: Subject<Weather> = new Subject<Weather>();
   public subscribers: any = {};
   private wiDataByCode: any;
-  private weatherUpdateInterval: number = 5000; // 5 minutes
+  private weatherUpdateInterval: number = 300000; // 5 minutes
   private forecastUpdateInterval: number = 900000;
 
   constructor(
