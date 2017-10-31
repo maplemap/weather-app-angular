@@ -1,8 +1,22 @@
 import { Injectable } from '@angular/core';
 
+import { AppService } from '../app.service';
+import { WeatherIconsService } from '../_services/weather-icons.service';
+
+import { Weather } from '../weather/weather';
+import { appConfig } from '../config';
+
+
 @Injectable()
 export class HelperService {
-  constructor() {}
+  private unitSystem: string;
+
+  constructor(
+    private appService: AppService,
+    private weatherIconsService: WeatherIconsService
+  ) {
+    this.unitSystem = appService.unitSystem;
+  }
 
   getWindDirection(windDegree: number): string {
     const windDirectionIndex = Math.round((windDegree - 11.25) / 22.5);

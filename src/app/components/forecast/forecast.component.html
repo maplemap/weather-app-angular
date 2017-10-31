@@ -1,0 +1,23 @@
+<div class="forecast" *ngIf="firstWeekForecast?.length > 0">
+  <h2 class="forecast__header">Forecast for 7 days</h2>
+  <ul class="forecast__list">
+    <li
+      *ngFor="let firstWeekDay of firstWeekForecast"
+      class="forecast__day">
+      <div class="forecast__date">{{firstWeekDay.date | date: 'EEE dd MMM'}}</div>
+      <div class="forecast__sky-state">
+        <span [attr.class]="firstWeekDay.iconClassname"></span>
+      </div>
+      <div class="forecast__temperature forecast__temperature--day">
+         <span class="forecast__temperature-data" data-deg="°" [attr.data-unit]="measureOfTemp">{{firstWeekDay.temperatureDay}}</span>
+      </div>
+      <div class="forecast__temperature forecast__temperature--night">
+        <span class="forecast__temperature-data" data-deg="°" [attr.data-unit]="measureOfTemp">{{firstWeekDay.temperatureNight}}</span>
+      </div>
+      <div class="forecast__natural-phenomen">{{firstWeekDay.description}}</div>
+    </li>
+  </ul>
+  <div class="forecast__action">
+    <button class="btn forecast__forecasts-btn">More</button>
+  </div>
+</div>

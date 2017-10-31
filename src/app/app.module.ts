@@ -26,6 +26,9 @@ import { ClockComponent } from './components/clock/clock.component';
 import { ClockService } from './components/clock/clock.service';
 import { DateComponent } from './components/date/date.component';
 import { DateService } from './components/date/date.service';
+import { ForecastComponent } from './components/forecast/forecast.component';
+import { ForecastService } from './components/forecast/forecast.service';
+import { WeatherIconsService } from './_services/weather-icons.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { DateService } from './components/date/date.service';
     NotFoundComponent,
     ErrorComponent,
     ClockComponent,
-    DateComponent
+    DateComponent,
+    ForecastComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,9 @@ import { DateService } from './components/date/date.service';
     LoaderService,
     HelperService,
     ClockService,
-    DateService
+    DateService,
+    ForecastService,
+    WeatherIconsService
   ],
   bootstrap: [AppComponent]
 })

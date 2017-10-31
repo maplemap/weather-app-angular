@@ -44,5 +44,11 @@
       </dl>
     </div>
     <div class="divider"></div>
+    <div class="city-card__forecasts">
+      <app-forecast
+        [measureOfTemp]="measureOfTemp"
+        [cityName]="weather.city">
+      </app-forecast>
+    </div>
   </div>
 </div>

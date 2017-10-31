@@ -1,0 +1,103 @@
+@import '../../../styles/variables.scss';
+
+.forecast {
+  height: auto;
+  font-size: .8em;
+  overflow: hidden;
+  margin-bottom: 2em;
+  @include clear-fix;
+  @include transition(.3s);
+
+  &__header {
+    font-size: 1.25em;
+    margin-bottom: .83em;
+  }
+
+  &__list {
+    &--collapsed {
+      height: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &__day {
+    display: block;
+    float: left;
+    width: 14.285714285714286%;
+    text-align: center;
+  }
+
+  &__sky-state {
+    .wi {
+      display: inline-block;
+      font-size: 1.8em;
+      padding: .3em 0;
+    }
+  }
+
+  &__temperature {
+      display: block;
+      width: 98%;
+      font-size: .9em;
+      padding: .3em 0 .1em 0;
+      vertical-align: middle;
+      margin: 0 auto;
+
+    &-data {
+      display: inline-block;
+      position: relative;
+      left: -6px;
+
+      &:before,
+      &::after {
+        display: block;
+        position: absolute;
+      }
+
+      &::before {
+        content: attr(data-deg);
+        top: 0;
+        right: -5px;
+        font-weight: 300;
+        font-size: 90%;
+      }
+
+      &::after {
+        content: attr(data-unit);
+        bottom: 0;
+        right: -13px;
+      }
+    }
+
+    &--night {
+      background: rgba(0, 0, 0, 0.03);
+    }
+  }
+
+  &__natural-phenomen {
+    padding: .3em 0 .1em 0;
+  }
+
+
+  @media screen and (max-width: 31.25em) {
+    & {
+      width: 80%;
+      font-size: 1em;
+      margin: 0 auto;
+
+      &__day {
+        width: 50%;
+        margin-bottom: 1.5em;
+        @include clear-fix;
+      }
+
+      &__date {
+        font-weight: 700;
+      }
+
+      &__sky-state {
+        font-size: 170%;
+      }
+    }
+  }
+}

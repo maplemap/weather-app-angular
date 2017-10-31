@@ -147,13 +147,6 @@
     }
   }
 
-    &__forecasts {
-
-    &-header {
-      font-size: 1em;
-    }
-  }
-
   &__action {
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     text-align: center;
@@ -191,10 +184,6 @@
     .city-card__info-list {
       width: 100%;
       margin: 0 2.5% 0 2.5%;
-    }
-
-    .city-card__forecasts-header {
-      font-size: 1.5em;
     }
   }
 
