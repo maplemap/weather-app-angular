@@ -13,7 +13,7 @@
     font-family: $roboto;
     box-sizing: border-box;
     border-radius: 2px;
-    padding: 2em 1em 0 1em;
+    padding: 2em 0 0 0;
     margin: 0 auto;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
     @include clear-fix;
@@ -144,20 +144,6 @@
         font-weight: 700;
         padding-right:0.5em;
       }
-    }
-  }
-
-  &__action {
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    text-align: center;
-
-    .city-card__forecasts-btn {
-      width: 100%;
-      text-transform: uppercase;
-      font-size: .8em;
-      border: none;
-      padding: .2em 0;
-      background: rgba(0, 0, 0, 0.01);
     }
   }
 
