@@ -15,6 +15,9 @@ export class ForecastComponent implements OnChanges {
   private firstWeekForecast: Forecast[];
   private secondWeekForecast: Forecast[];
   private subscribers: any = {};
+  isSecondWeekForecastListShow: boolean = false;
+  forecastDays: number;
+  buttonLabel: string = 'More';
 
   constructor(
     private forecastService: ForecastService
@@ -28,8 +31,27 @@ export class ForecastComponent implements OnChanges {
         const forecastData = forecast.map(forecastByDay => this.forecastService.handleResponseForecastData(forecastByDay));
 
         this.firstWeekForecast = forecastData.slice(1, 8);
-        this.secondWeekForecast = forecastData.slice(8, 16);
+        this.secondWeekForecast = forecastData.slice(8, 15);
+
+        this.recalculateForecastDays();
+        console.log('forecast subscribe');
+
     });
+  }
+
+  toggleSecondWeekForecastList(): void {
+    this.isSecondWeekForecastListShow = !this.isSecondWeekForecastListShow;
+    this.buttonLabel = !this.isSecondWeekForecastListShow ? 'More' : 'Less';
+
+    this.recalculateForecastDays();
+  }
+
+  private recalculateForecastDays(): void {
+    const firstWeekForecastLength = this.firstWeekForecast.length;
+    const secondWeekForecastLength = this.secondWeekForecast.length;
+
+    this.forecastDays = !this.isSecondWeekForecastListShow ?
+      firstWeekForecastLength : firstWeekForecastLength + secondWeekForecastLength;
   }
 
   ngOnDestroy(): void {
