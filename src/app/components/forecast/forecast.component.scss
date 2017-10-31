@@ -4,7 +4,6 @@
   height: auto;
   font-size: .8em;
   overflow: hidden;
-  margin-bottom: 2em;
   @include clear-fix;
   @include transition(.3s);
 
@@ -14,68 +13,36 @@
   }
 
   &__list {
+    display: flex;
+    padding: 0 1em 1.5em 1em;
+
     &--collapsed {
-      height: 0;
-      margin-bottom: 0;
+      display: none;
     }
-  }
 
-  &__day {
-    display: block;
-    float: left;
-    width: 14.285714285714286%;
-    text-align: center;
-  }
-
-  &__sky-state {
-    .wi {
-      display: inline-block;
-      font-size: 1.8em;
-      padding: .3em 0;
+    &--second-week {
+      margin-top: 1em;
     }
-  }
 
-  &__temperature {
+    app-forecast-item {
       display: block;
-      width: 98%;
-      font-size: .9em;
-      padding: .3em 0 .1em 0;
-      vertical-align: middle;
-      margin: 0 auto;
-
-    &-data {
-      display: inline-block;
-      position: relative;
-      left: -6px;
-
-      &:before,
-      &::after {
-        display: block;
-        position: absolute;
-      }
-
-      &::before {
-        content: attr(data-deg);
-        top: 0;
-        right: -5px;
-        font-weight: 300;
-        font-size: 90%;
-      }
-
-      &::after {
-        content: attr(data-unit);
-        bottom: 0;
-        right: -13px;
-      }
-    }
-
-    &--night {
-      background: rgba(0, 0, 0, 0.03);
+      width: 14.285714285714286%;
+      text-align: center;
     }
   }
 
-  &__natural-phenomen {
-    padding: .3em 0 .1em 0;
+  &__action {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
+
+    &-btn {
+      width: 100%;
+      text-transform: uppercase;
+      font-size: .8em;
+      border: none;
+      padding: .5em 0;
+      background: rgba(0, 0, 0, 0.01);
+    }
   }
 
 
