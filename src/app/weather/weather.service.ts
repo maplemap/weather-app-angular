@@ -7,7 +7,8 @@ import 'rxjs/add/operator/catch';
 
 import { AppService } from '../app.service';
 import { LoaderService } from '../components/loader/loader.service';
-import { HelperService } from "../_services/helper.service";
+import { HelperService } from '../_services/helper.service';
+import { WeatherIconsService } from '../_services/weather-icons.service';
 
 import { Weather } from './weather';
 import { apiConfig, appConfig } from '../config';
@@ -21,13 +22,13 @@ export class WeatherService {
   public subscribers: any = {};
   private wiDataByCode: any;
   private weatherUpdateInterval: number = 300000; // 5 minutes
-  private forecastUpdateInterval: number = 900000;
 
   constructor(
     private http: Http,
     private appService: AppService,
     private loaderService: LoaderService,
-    private helperService: HelperService
+    private helperService: HelperService,
+    private weatherIconsService: WeatherIconsService,
   ) {
     this.unitSystem = appService.unitSystem;
     this.wiDataByCode = wiDataByCode;
@@ -61,8 +62,7 @@ export class WeatherService {
             resolve(weather.city);
 
             this.hideLoader();
-          }
-          );
+          });
         } else {
           console.error(error);
           this.hideLoader();
@@ -119,35 +119,17 @@ export class WeatherService {
       );
   }
 
-  getForecastByLocation(latitude: number, longitude: number): Observable<any> {
-    return Observable.interval(this.forecastUpdateInterval).startWith(0)
-      .switchMap(() =>
-        this.http.get(`${apiConfig.host}/forecast?appid=${apiConfig.appid}&lat=${latitude}&lon=${longitude}&units=${this.unitSystem}&cnt=${apiConfig.amountForecastDays}`)
-          .map((response: Response) => response.json())
-          .catch(this.handleError)
-      );
-  }
-
-  getForecastByCity(city: string): Observable<any> {
-    return Observable.interval(this.forecastUpdateInterval).startWith(0)
-      .switchMap(() =>
-        this.http.get(`${apiConfig.host}/forecast?q=${city},us&appid=${apiConfig.appid}&units=${this.unitSystem}&cnt=${apiConfig.amountForecastDays}`)
-          .map((response: Response) => response.json())
-          .catch(this.handleError)
-      );
-  }
-
-  private handleResponseWeatherData(responseData: any): Weather {
+  handleResponseWeatherData(responseData: any): Weather {
     const { name, main, weather, wind, sys } = responseData;
     console.log(responseData);
 
     const updateAt = new Date().getTime();
-    const iconClassname = this.getIconClassNameByCode(weather[0].id, sys.sunset);
+    const iconClassname = this.weatherIconsService.getIconClassNameByCode(weather[0].id, sys.sunset);
     const temperature = Math.round(main.temp);
     const pressureInHpa = Math.round(main.pressure);
     const pressureInMmHg = (this.unitSystem === appConfig.defaultUnit) ? this.helperService.getPressureInMmHg(pressureInHpa) : pressureInHpa;
     const windDegrees = Math.round(wind.deg);
-    const windDirection =  this.helperService.getWindDirection(windDegrees);
+    const windDirection = this.helperService.getWindDirection(windDegrees);
     const windBeaufortScale = this.helperService.getWindBeaufortScaleByMeterInSecond(wind.speed);
     const sunriseTime = sys.sunrise * 1000;
     const sunsetTime = sys.sunset * 1000;
@@ -167,24 +149,6 @@ export class WeatherService {
       wind.speed,
       windBeaufortScale
     );
-  }
-
-  private getIconClassNameByCode(code: number, sunsetTimestamp: number): string {
-    const classPrefix = 'wi wi-';
-    let iconClassname = this.wiDataByCode[code].icon;
-    let dayPrefix = '';
-
-    if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
-      const dateNowTimestamp = Math.round(Date.now()/1000);
-      dayPrefix = (dateNowTimestamp > sunsetTimestamp) ? 'night-' : 'day-';
-
-      if (dateNowTimestamp > sunsetTimestamp && iconClassname === 'sunny') {
-        dayPrefix = 'night-clear';
-        iconClassname = '';
-      }
-    }
-
-    return `${classPrefix}${dayPrefix}${iconClassname}`;
   }
 
   private handleError(error: any): Observable<any> {
