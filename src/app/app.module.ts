@@ -29,6 +29,7 @@ import { DateService } from './components/date/date.service';
 import { ForecastComponent } from './components/forecast/forecast.component';
 import { ForecastService } from './components/forecast/forecast.service';
 import { WeatherIconsService } from './_services/weather-icons.service';
+import { ForecastItemComponent } from './components/forecast/forecast-item/forecast-item.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { WeatherIconsService } from './_services/weather-icons.service';
     ErrorComponent,
     ClockComponent,
     DateComponent,
-    ForecastComponent
+    ForecastComponent,
+    ForecastItemComponent
   ],
   imports: [
     BrowserModule,
