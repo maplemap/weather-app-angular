@@ -6,10 +6,14 @@ import { appConfig, apiConfig } from './config';
 
 @Injectable()
 export class AppService {
-  unitSystem: string;
+  private unitSystem: string;
 
   constructor(private localStorageSevice: LocalStorageService) {
     this.unitSystem = this.localStorageSevice.get('unit') || appConfig.defaultUnit;
+  }
+
+  getUnitSystem(): string {
+    return this.unitSystem;
   }
 
   updateUnitSystem(unitStatus: boolean): void {
@@ -17,6 +21,7 @@ export class AppService {
     const unitSystem = Object.keys(apiConfig.measurementUnits)[unitStatusInteger];
 
     this.localStorageSevice.set('unit', unitSystem);
+
     setTimeout(() => window.location.reload(), 300);
   }
 }

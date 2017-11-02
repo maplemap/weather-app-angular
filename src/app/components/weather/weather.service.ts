@@ -30,7 +30,7 @@ export class WeatherService {
     private helperService: HelperService,
     private weatherIconsService: WeatherIconsService,
   ) {
-    this.unitSystem = appService.unitSystem;
+    this.unitSystem = appService.getUnitSystem();
     this.wiDataByCode = wiDataByCode;
   }
 

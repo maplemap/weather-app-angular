@@ -15,7 +15,7 @@ export class HelperService {
     private appService: AppService,
     private weatherIconsService: WeatherIconsService
   ) {
-    this.unitSystem = appService.unitSystem;
+    this.unitSystem = appService.getUnitSystem();
   }
 
   getWindDirection(windDegree: number): string {

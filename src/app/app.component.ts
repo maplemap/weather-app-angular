@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.unitSystem = this.appService.unitSystem;
+    this.unitSystem = this.appService.getUnitSystem();
   }
 
   changeUnit(unitStatus: boolean) {

@@ -20,7 +20,7 @@ export class ForecastService {
     private weatherIconsService: WeatherIconsService,
     private helperService: HelperService
   ) {
-    this.unitSystem = appService.unitSystem;
+    this.unitSystem = appService.getUnitSystem();
   }
 
   getForecastByCity(city: string): Observable<any> {
