@@ -52,6 +52,6 @@ export class ForecastService {
 
   private handleError(error: any): Observable<any> {
     console.error('Error', error);
-    return Observable.throw(error.message || error)
+    return Observable.throw(error.message || error);
   }
 }

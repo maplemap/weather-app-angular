@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Weather } from '../../weather/weather';
+import { Weather } from '../../components/weather/weather';
 import { apiConfig } from '../../config';
 
 @Component({

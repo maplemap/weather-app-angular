@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CityCardComponent } from './components/city-card/city-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { WeatherComponent } from './weather/weather.component';
+import { WeatherComponent } from './components/weather/weather.component';
 import { LoaderComponent } from './components/loader/loader.component';
 
 import { appRouting } from './app.routing';
@@ -15,7 +15,7 @@ import { appRouting } from './app.routing';
 import { AppService } from './app.service';
 import { UiSwitchModule } from '../../node_modules/angular2-ui-switch/src';
 import { LocalStorageService } from './_services/localstorage.service';
-import { WeatherService } from './weather/weather.service';
+import { WeatherService } from './components/weather/weather.service';
 import { ResolveLocationService } from './_services/resolve-location.service';
 import { ResolveCityService } from './_services/resolve-city.service';
 import { HelperService } from './_services/helper.service';

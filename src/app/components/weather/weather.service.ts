@@ -5,23 +5,23 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 
-import { AppService } from '../app.service';
-import { LoaderService } from '../components/loader/loader.service';
-import { HelperService } from '../_services/helper.service';
-import { WeatherIconsService } from '../_services/weather-icons.service';
+import { AppService } from '../../app.service';
+import { LoaderService } from '../../components/loader/loader.service';
+import { HelperService } from '../../_services/helper.service';
+import { WeatherIconsService } from '../../_services/weather-icons.service';
 
 import { Weather } from './weather';
-import { apiConfig, appConfig } from '../config';
-import * as wiDataByCode from '../data/wi-codes.data.json';
+import { apiConfig, appConfig } from '../../config';
+import * as wiDataByCode from '../../data/wi-codes.data.json';
 
 @Injectable()
 export class WeatherService {
-  private weather: Weather;
+  // private weather: Weather;
   private unitSystem: string;
   private _weatherSubscription: Subject<Weather> = new Subject<Weather>();
   public subscribers: any = {};
   private wiDataByCode: any;
-  private weatherUpdateInterval: number = 300000; // 5 minutes
+  private weatherUpdateInterval: number = 300000; // 300000 = 5 minutes
 
   constructor(
     private http: Http,
@@ -54,11 +54,13 @@ export class WeatherService {
           resolve(weather.city);
 
           this.hideLoader();
-        }
-        );
+        });
       }, (error) => {
-        if (error.code === 1) {
-          this.subscribers.city = this.getWeatherByCity('London').subscribe((weather) => {
+        if (error.code === 1) { // if user didn't approve geolocation
+          this.subscribers.city = this.getWeatherByLocation(
+            appConfig.defaultCity.coord.latitude,
+            appConfig.defaultCity.coord.longitude
+          ).subscribe((weather) => {
             resolve(weather.city);
 
             this.hideLoader();
@@ -119,9 +121,8 @@ export class WeatherService {
       );
   }
 
-  handleResponseWeatherData(responseData: any): Weather {
+  private handleResponseWeatherData(responseData: any): Weather {
     const { name, main, weather, wind, sys } = responseData;
-    console.log(responseData);
 
     const updateAt = new Date().getTime();
     const iconClassname = this.weatherIconsService.getIconClassNameByCode(weather[0].id, sys.sunset);
@@ -152,7 +153,6 @@ export class WeatherService {
   }
 
   private handleError(error: any): Observable<any> {
-    console.error('Error', error);
     return Observable.throw(error.message || error)
   }
 

@@ -25,13 +25,11 @@ export class WeatherComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.data.subscribe(
       (data: { weather: Weather }) => {
-        console.log('route suscribe', data.weather, new Date());
         this.weather = data.weather;
       }
     );
 
     this._weatherSubscription = this.weatherService.getWeather().subscribe(weather => {
-      console.log('weatheChangeSubscribe', weather, new Date());
       this.weather = weather;
     });
   }

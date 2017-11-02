@@ -34,8 +34,6 @@ export class ForecastComponent implements OnChanges {
         this.secondWeekForecast = forecastData.slice(8, 15);
 
         this.recalculateForecastDays();
-        console.log('forecast subscribe');
-
     });
   }
 
