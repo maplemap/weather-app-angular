@@ -55,9 +55,9 @@
 
   &__updated-label {
     position: absolute;
-    top: .8em;
+    top: 3.8em;
     right: 0;
-    width: 20%;
+    width: 30%;
     color: #9a9a9a;
     font-size: .5em;
     font-weight: 300;
@@ -105,7 +105,7 @@
 
   &__date-time {
     position: absolute;
-    top: 1.6em;
+    top: 3em;
     right: 3%;
     font-size: 1em;
     text-align: right;
@@ -125,64 +125,85 @@
   &__info {
     display: flex;
     justify-content: center;
+    color: #656565;
     font-size: .8em;
-    opacity: .7;
-    padding: 0 10%;
 
     &-list {
-    width: 50%;
-    margin: 0 5%;
+      margin: 0 9%;
 
-      dt,
-      dd {
-        margin:0;
-        padding:0;
-      }
-      dt {
-        float:left;
-        clear: left;
-        font-weight: 700;
-        padding-right:0.5em;
+      &-item {
+        span {
+          font-weight: 700;
+        }
       }
     }
   }
 
 
   // media query
-  @media screen and (max-width: 31.25em) {
-    .city-card__sky-icon {
-      font-size: 80%;
+  @media screen and (max-width: 33.125em) {
+    &__updated-label {
+      top: 1.8em;
     }
-
-    .city-card__temperature {
-      font-size: 3em;
+    &__sky-icon {
+      top: 4em;
+      font-size: 60%;
     }
-
-    .city-card__date-time {
-      font-size: .8em;
+    &__temperature {
+      font-size: 2.7em;
     }
-
-    .city-card__info {
-      font-size: 1em;
-      padding: 0;
-    }
-
-    .city-card__info-list {
-      width: 100%;
-      margin: 0 2.5% 0 2.5%;
+    &__date-time {
+      font-size: .7em;
     }
   }
 
-  @media screen and (max-width: 33.125em) {
-    .city-card__sky-icon {
-      top: 3em;
-      font-size: 50%;
+  @media screen and (max-width: 31.25em) {
+    &__updated-label {
+      width: 50%;
     }
-    .city-card__temperature {
-      font-size: 2.7em;
+
+    &__temperature {
+      font-size: 3em;
     }
-    .city-card__date-time {
-      font-size: .7em;
+
+    &__date-time {
+      font-size: .8em;
+    }
+
+    &__info {
+      flex-flow: wrap;
+      text-align: center;
+      font-size: .9em;
+      padding: 0;
+    }
+
+    &__info-list {
+      flex: 0 0 50%;
+      margin: 0 2.5% 0 2.5%;
+
+      &:first-child {
+        margin-bottom: 1em;
+      }
+    }
+  }
+
+  @media screen and (max-width: 23.125em) {
+    &__sky-icon {
+      top: 4em;
+      font-size: 45%;
+    }
+
+    &__updated-label {
+      top: 0.8em;
+    }
+
+    &__date {
+      font-size: 120%;
+    }
+
+    &__date-time {
+      top: 2.5em;
+      font-size: .6em;
     }
   }
 }

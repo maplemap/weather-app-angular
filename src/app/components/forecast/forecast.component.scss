@@ -52,18 +52,16 @@
       font-size: 1em;
       margin: 0 auto;
 
-      &__day {
-        width: 50%;
-        margin-bottom: 1.5em;
-        @include clear-fix;
-      }
+      &__list {
+        flex-flow: wrap;
+        padding: 0;
 
-      &__date {
-        font-weight: 700;
-      }
-
-      &__sky-state {
-        font-size: 170%;
+        app-forecast-item {
+          flex: 0 0 50%;
+          display: inline-block;
+          margin-bottom: 1.5em;
+          @include clear-fix;
+        }
       }
     }
   }

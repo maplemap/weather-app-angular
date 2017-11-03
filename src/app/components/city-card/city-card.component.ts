@@ -18,6 +18,7 @@ export class CityCardComponent implements OnInit {
 
   ngOnInit() {
     const measurementUnits = apiConfig.measurementUnits[this.unitSystem];
+
     this.measureOfTemp = measurementUnits.temperature;
     this.measureOfWindSpeed = measurementUnits.windSpeed;
     this.measureOfPressure = measurementUnits.pressure;

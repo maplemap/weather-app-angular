@@ -3,7 +3,6 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class ClockService {
-
   private clock: Observable<Date>;
 
   constructor() {

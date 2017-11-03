@@ -1,7 +1,8 @@
+@import '../../../../styles/variables.scss';
+
 .forecast-item {
 
-
-    &__sky-state {
+  &__sky-state {
     .wi {
       display: inline-block;
       font-size: 1.8em;
@@ -10,12 +11,12 @@
   }
 
   &__temperature {
-      display: block;
-      width: 98%;
-      font-size: .9em;
-      padding: .3em 0 .1em 0;
-      vertical-align: middle;
-      margin: 0 auto;
+    display: block;
+    width: 98%;
+    font-size: .9em;
+    padding: .3em 0 .1em 0;
+    vertical-align: middle;
+    margin: 0 auto;
 
     &-data {
       display: inline-block;
@@ -51,4 +52,17 @@
   &__natural-phenomen {
     padding: .3em 0 .1em 0;
   }
+
+
+  @media screen and (max-width: 31.25em) {
+    &__date {
+      font-weight: 700;
+    }
+
+    &__sky-state {
+      font-size: 130%;
+    }
+  }
 }
+
+
