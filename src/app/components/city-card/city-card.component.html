@@ -26,22 +26,30 @@
     </div>
     <div class="divider"></div>
     <div class="city-card__info">
-      <dl class="city-card__info-list">
-        <dt>Wind:</dt>
-        <dd>{{ weather.windBeaufortScale | lowercase }}, {{ weather.windDirection | lowercase }}, {{ weather.windSpeed }} {{ measureOfWindSpeed }}</dd>
-        <dt>Humidity:</dt>
-        <dd>{{ weather.humidity }}%</dd>
-        <dt>Pressure:</dt>
-        <dd>{{ weather.pressureInMmHg }} {{ measureOfPressure }}</dd>
-      </dl>
-      <dl class="city-card__info-list">
-        <dt>Cloudiness:</dt>
-        <dd>{{ weather.description }}</dd>
-        <dt>Sunrise:</dt>
-        <dd>{{ weather.sunrise | date: 'HH:mm' }}</dd>
-        <dt>Sunset:</dt>
-        <dd>{{ weather.sunset | date: 'HH:mm' }}</dd>
-      </dl>
+      <div class="city-card__info-list">
+        <div class="city-card__info-list-item">
+          <span>Wind:</span> {{ weather.windDirection | lowercase }}, {{ weather.windBeaufortScale | lowercase }}
+        </div>
+        <div class="city-card__info-list-item">
+          <span>Wind speed:</span> {{ weather.windSpeed }} {{ measureOfWindSpeed }}
+        </div>
+        <div class="city-card__info-list-item">
+          <span>Humidity:</span> {{ weather.humidity }}%
+        </div>
+        <div class="city-card__info-list-item">
+          <span>Pressure:</span> {{ weather.pressureInMmHg }} {{ measureOfPressure }}
+        </div>
+      </div>
+      <div class="city-card__info-list">
+        <div class="city-card__info-list-item">
+          <span>Cloudiness:</span> {{ weather.description }}
+        </div>
+        <div class="city-card__info-list-item">
+          <span>Sunrise:</span> {{ weather.sunrise | date: 'HH:mm' }}
+        </div>
+        <div class="city-card__info-list-item">
+          <span>Sunset:</span> {{ weather.sunset | date: 'HH:mm' }}</div>
+      </div>
     </div>
     <div class="divider"></div>
     <div class="city-card__forecasts">
