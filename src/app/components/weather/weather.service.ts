@@ -16,10 +16,9 @@ import * as wiDataByCode from '../../data/wi-codes.data.json';
 
 @Injectable()
 export class WeatherService {
-  // private weather: Weather;
   private unitSystem: string;
-  private _weatherSubscription: Subject<Weather> = new Subject<Weather>();
-  public subscribers: any = {};
+  private weather: Subject<Weather> = new Subject<Weather>();
+  private subscribers: any = {};
   private wiDataByCode: any;
   private weatherUpdateInterval: number = 300000; // 300000 = 5 minutes
 
@@ -35,11 +34,7 @@ export class WeatherService {
   }
 
   getWeather(): Subject<Weather> {
-    return this._weatherSubscription;
-  }
-
-  getUnitSystem(): string {
-    return this.unitSystem;
+    return this.weather;
   }
 
   getWeatherByСurrentLocation(): Promise<any> {
@@ -98,7 +93,7 @@ export class WeatherService {
           .map((data) => {
             const weather = this.handleResponseWeatherData(data);
 
-            this._weatherSubscription.next(weather);
+            this.weather.next(weather);
             return weather;
           })
           .catch(this.handleError)
@@ -113,7 +108,7 @@ export class WeatherService {
           .map((data) => {
             const weather = this.handleResponseWeatherData(data);
 
-            this._weatherSubscription.next(weather);
+            this.weather.next(weather);
             return weather;
           })
           .catch(this.handleError)

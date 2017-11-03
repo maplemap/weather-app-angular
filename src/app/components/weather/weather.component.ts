@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
+import { AppService } from '../../app.service';
 import { WeatherService } from './weather.service';
 import { Weather } from './weather';
 
@@ -16,10 +17,11 @@ export class WeatherComponent implements OnInit, OnDestroy {
   unitSystem: string;
 
   constructor(
+    private appService: AppService,
     private weatherService: WeatherService,
     private route: ActivatedRoute
   ) {
-    this.unitSystem = weatherService.getUnitSystem();
+    this.unitSystem = appService.getUnitSystem();
   }
 
   ngOnInit(): void {
