@@ -1,9 +1,7 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Forecast</title><base href=""><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png?v=2"><link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png?v=2"><link rel="icon" type="image/png" href="img/favicon.png?v=2"/><script>// See http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Forecast</title><base href="/weather-app-angular/"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png?v=2"><link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png?v=2"><link rel="icon" type="image/png" href="img/favicon.png?v=2"/><script>// See http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/
     (function () {
       var redirect = sessionStorage.redirect;
       delete sessionStorage.redirect;
-           console.log(redirect);
-            console.log(location.href);
       if (redirect && redirect != location.href) {
         history.replaceState(null, null, redirect);
       }
