@@ -2,33 +2,33 @@
   <h2 class="forecast__header">Forecast for {{forecastDays}} days</h2>
   <ul class="forecast__list forecast__list--first-week">
     <app-forecast-item
-      *ngFor="let firstWeekDay of firstWeekForecast"
-      [date]="firstWeekDay.date"
-      [temperatureDay]="firstWeekDay.temperatureDay"
-      [temperatureNight]="firstWeekDay.temperatureNight"
-      [iconClassname]="firstWeekDay.iconClassname"
+      *ngFor="let dayOfFirstWeek of firstWeekForecast"
+      [date]="dayOfFirstWeek.date"
+      [temperatureDay]="dayOfFirstWeek.temperatureDay"
+      [temperatureNight]="dayOfFirstWeek.temperatureNight"
+      [iconClassname]="dayOfFirstWeek.iconClassname"
       [measureOfTemp]="measureOfTemp"
-      [description]="firstWeekDay.description">
+      [description]="dayOfFirstWeek.description">
     </app-forecast-item>
   </ul>
   <ul
     [ngClass]="{'forecast__list--collapsed': !isSecondWeekForecastListShow}"
     class="forecast__list forecast__list--second-week">
     <app-forecast-item
-      *ngFor="let secondWeekDay of secondWeekForecast"
-      [date]="secondWeekDay.date"
-      [temperatureDay]="secondWeekDay.temperatureDay"
-      [temperatureNight]="secondWeekDay.temperatureNight"
-      [iconClassname]="secondWeekDay.iconClassname"
+      *ngFor="let dayOfSecondWeek of secondWeekForecast"
+      [date]="dayOfSecondWeek.date"
+      [temperatureDay]="dayOfSecondWeek.temperatureDay"
+      [temperatureNight]="dayOfSecondWeek.temperatureNight"
+      [iconClassname]="dayOfSecondWeek.iconClassname"
       [measureOfTemp]="measureOfTemp"
-      [description]="secondWeekDay.description">
+      [description]="dayOfSecondWeek.description">
     </app-forecast-item>
   </ul>
   <div class="forecast__action" *ngIf="secondWeekForecast?.length > 0">
     <button
       class="btn forecast__action-btn"
       (click)="toggleSecondWeekForecastList()">
-        {{buttonLabel}}
+         {{ !isSecondWeekForecastListShow ? 'More' : 'Less'}}
       </button>
   </div>
 </div>

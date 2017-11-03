@@ -12,12 +12,11 @@ export class ForecastComponent implements OnChanges {
   @Input() cityName: string;
   @Input() measureOfTemp: string;
 
-  private firstWeekForecast: Forecast[];
-  private secondWeekForecast: Forecast[];
   private subscribers: any = {};
+  firstWeekForecast: Forecast[];
+  secondWeekForecast: Forecast[];
   isSecondWeekForecastListShow: boolean = false;
   forecastDays: number;
-  buttonLabel: string = 'More';
 
   constructor(
     private forecastService: ForecastService
@@ -39,7 +38,6 @@ export class ForecastComponent implements OnChanges {
 
   toggleSecondWeekForecastList(): void {
     this.isSecondWeekForecastListShow = !this.isSecondWeekForecastListShow;
-    this.buttonLabel = !this.isSecondWeekForecastListShow ? 'More' : 'Less';
 
     this.recalculateForecastDays();
   }
