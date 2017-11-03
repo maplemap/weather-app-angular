@@ -1,0 +1,29 @@
+/**
+ * Main
+ */
+$max-width-app: 700px;
+
+
+/**
+ * Fonts
+ */
+$nunito: 'Nunito', sans-serif;
+$roboto: 'Roboto', sans-serif;;
+
+/**
+ * Mixins
+ */
+ @mixin transition ($transition) {
+	-webkit-transition: all $transition;
+	-moz-transition:    all $transition;
+	-ms-transition:     all $transition;
+	-o-transition:      all $transition;
+}
+
+@mixin clear-fix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

@@ -1,0 +1,100 @@
+@import './partials/normalize';
+@import './partials/fonts';
+@import './variables';
+
+/**
+ * Main
+ */
+ html,
+ body {
+   width: 100%;
+   height: 100%;
+ }
+ body {
+   color: #333;
+   font-family: $nunito;
+   background: #fff;
+ }
+
+ h1, h2, h3,
+ h4, h5, h6 {
+   font-family: $nunito;
+   text-align: center;
+   font-weight: normal;
+   padding: 0;
+   margin: 0;
+ }
+
+ button,
+ input,
+ optgroup,
+ select,
+ textarea {
+    font-family: $nunito;
+    border: none;
+    background: none;
+
+    &:focus {
+      outline: 0;
+    }
+ }
+
+ a {
+   color: inherit;
+ }
+
+ ul {
+   list-style-type: none;
+   padding: 0;
+   margin: 0;
+ }
+
+ .meteocons {
+   color: inherit;
+   text-decoration: none;
+
+   &:before {
+     content: attr(data-icon);
+     font-family: 'MeteoconsRegular';
+   }
+ }
+
+ /**
+  * main-box
+  */
+  .app-box {
+    position: relative;
+  }
+
+  .divider {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin: 1em auto 1em auto;
+
+    &--60 {
+      width: 60%;
+    }
+  }
+
+  .clear-fix {
+    @include clear-fix;
+  }
+
+  /**
+   * btn
+   */
+  .btn {
+    cursor: pointer;
+    outline: 0;
+    padding: .2em 1% 0 1%;
+    border: 1px solid #333;
+    background: none;
+  }
+
+ /**
+  * Content box
+  */
+ .content-box {
+   max-width: $max-width-app;
+   padding: 0 3%;
+   margin: 4em auto;
+ }
