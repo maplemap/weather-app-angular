@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Forecast</title>
-  <base href="">
+  <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png?v=2">
@@ -13,8 +13,6 @@
     // See http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/
     (function () {
       var redirect = sessionStorage.redirect;
-      console.log(redirect);
-      console.log(location.href);
       delete sessionStorage.redirect;
       if (redirect && redirect != location.href) {
         history.replaceState(null, null, redirect);
