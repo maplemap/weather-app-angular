@@ -1,5 +1,5 @@
-# WeatherApp - application for receiving topical weather and forecast
-Based on Angular4/AngularCLI and free API from [openweathermap.org](https://openweathermap.org/api)
+# WeatherApp - application with geolocation option for receiving topical weather and forecast
+Based on Angular4/AngularCLI and free API from [openweathermap.org](https://openweathermap.org/api).
 
 [Live Demo](https://maplemap.github.io/weather-app-angular/)
 
