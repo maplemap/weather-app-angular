@@ -28,22 +28,28 @@ export class HelperService {
   getWindBeaufortScaleByMeterInSecond(windSpeed: number): string {
     const beaufortWindScale = ['calm', 'light air', 'light breeze', 'gentle breeze', 'moderate breeze', 'fresh breeze', 'strong breeze', 'high wind, near gale', 'gale', 'severe gale', 'storm', 'violent storm', 'hurricane'];
     let windSpeedIndex = 0;
+    const windSpeedScale = [
+      [0, 0.3],
+      [0.4, 1.6],
+      [1.7, 3.5],
+      [3.6, 5.5],
+      [5.6, 8],
+      [8.1, 10.8],
+      [10.9, 13.9],
+      [14, 17.2],
+      [17.3, 20.8],
+      [20.9, 24.5],
+      [24.6, 28.5],
+      [28.6, 32.7],
+      [32.8, 1000]
+    ];
 
-    switch (true) {
-      case (windSpeed < 0.3): windSpeedIndex = 0; break;
-      case (0.3 <= windSpeed && windSpeed < 1.6): windSpeedIndex = 1; break;
-      case (1.6 <= windSpeed && windSpeed < 3.5): windSpeedIndex = 2; break;
-      case (3.4 <= windSpeed && windSpeed < 5.5): windSpeedIndex = 3; break;
-      case (5.5 <= windSpeed && windSpeed < 8): windSpeedIndex = 4; break;
-      case (8 <= windSpeed && windSpeed < 10.8): windSpeedIndex = 5; break;
-      case (10.8 <= windSpeed && windSpeed < 13.9): windSpeedIndex = 6; break;
-      case (13.9 <= windSpeed && windSpeed < 17.2): windSpeedIndex = 7; break;
-      case (17.2 <= windSpeed && windSpeed < 20.8): windSpeedIndex = 8; break;
-      case (20.8 <= windSpeed && windSpeed < 24.5): windSpeedIndex = 9; break;
-      case (24.5 <= windSpeed && windSpeed < 28.5): windSpeedIndex = 10; break;
-      case (28.5 <= windSpeed && windSpeed < 32.7): windSpeedIndex = 11; break;
-      case (32.7 <= windSpeed): windSpeedIndex = 12; break;
-    }
+    windSpeedScale.forEach((speedInterval, index) => {
+      if (windSpeedScale[index][0] <= windSpeed && windSpeed <= windSpeedScale[index][1]) {
+        windSpeedIndex = index;
+      }
+    });
+
 
     return beaufortWindScale[windSpeedIndex];
   }
