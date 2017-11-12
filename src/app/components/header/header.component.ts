@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { appConfig } from '../../config';
+import { appConfig, apiConfig } from '../../config';
 
 @Component({
   selector: 'app-header',
@@ -8,16 +8,19 @@ import { appConfig } from '../../config';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() unitSystem: string;
-  @Output() changeUnit: EventEmitter<boolean> = new EventEmitter();
+  @Input() currentUnitSystem: string;
+  @Output() changeUnit: EventEmitter<string> = new EventEmitter();
 
   isUnitSwitcherChecked: boolean = false;
 
   ngOnInit() {
-    this.isUnitSwitcherChecked = this.unitSystem === appConfig.defaultUnit;
+    this.isUnitSwitcherChecked = this.currentUnitSystem === appConfig.defaultUnit;
   }
 
   onChangeUnitSwitcher() {
-    this.changeUnit.emit(this.isUnitSwitcherChecked);
+    const unitSystems = Object.keys(apiConfig.measurementUnits)
+    const unitIndex = this.isUnitSwitcherChecked ? 1 : 0;
+
+    this.changeUnit.emit(unitSystems[unitIndex]);
   }
 }

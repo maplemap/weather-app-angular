@@ -16,10 +16,7 @@ export class AppService {
     return this.unitSystem;
   }
 
-  updateUnitSystem(unitStatus: boolean): void {
-    const unitStatusInteger = +unitStatus;
-    const unitSystem = Object.keys(apiConfig.measurementUnits)[unitStatusInteger];
-
+  updateUnitSystem(unitSystem: string): void {
     this.localStorageSevice.set('unit', unitSystem);
 
     setTimeout(() => window.location.reload(), 300);

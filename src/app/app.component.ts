@@ -12,13 +12,13 @@ export class AppComponent implements OnInit {
 
   constructor(
     private appService: AppService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.unitSystem = this.appService.getUnitSystem();
   }
 
-  changeUnit(unitStatus: boolean) {
-    this.appService.updateUnitSystem(unitStatus);
+  changeUnit(unitSystem: string) {
+    this.appService.updateUnitSystem(unitSystem);
   }
 }
