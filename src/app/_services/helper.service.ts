@@ -65,4 +65,10 @@ export class HelperService {
 
     return pressureInInches;
   }
+
+  isItCurrentDayByTimestamps(firstTimestamp, secondTimestamp): boolean {
+    const days = [firstTimestamp, secondTimestamp].map(timestamp => Math.floor(timestamp / (3600 * 24)));
+
+    return days[0] === days[1];
+  }
 }

@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { AppService } from '../../app.service';
+import { WeatherService } from '../weather/weather.service';
 import { HelperService } from '../../_services/helper.service';
 import { WeatherIconsService } from '../../_services/weather-icons.service';
 import { Forecast } from './forecast';
@@ -17,6 +18,7 @@ export class ForecastService {
   constructor(
     private http: Http,
     private appService: AppService,
+    private weatherService: WeatherService,
     private weatherIconsService: WeatherIconsService,
     private helperService: HelperService
   ) {
@@ -35,13 +37,16 @@ export class ForecastService {
 
   handleResponseForecastData(responseData: any): Forecast {
     const { dt, temp, weather } = responseData;
+    const currentWeatherTimestamp = this.weatherService.getCurrentWeatherTimestamp();
 
+    const currentDay = this.helperService.isItCurrentDayByTimestamps(dt, currentWeatherTimestamp);
     const date = dt * 1000;
     const iconClassname = this.weatherIconsService.getIconClassNameByCode(weather[0].id);
     const temperatureDay = Math.round(temp.day);
     const temperatureNight = Math.round(temp.night);
 
     return new Forecast(
+      currentDay,
       date,
       iconClassname,
       temperatureDay,

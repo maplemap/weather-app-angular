@@ -18,6 +18,7 @@ import * as wiDataByCode from '../../data/wi-codes.data.json';
 export class WeatherService {
   private unitSystem: string;
   private weather: Subject<Weather> = new Subject<Weather>();
+  private currentWeatherTimestamp: number;
   private subscribers: any = {};
   private wiDataByCode: any;
   private weatherUpdateInterval: number = 300000; // 300000 = 5 minutes
@@ -35,6 +36,10 @@ export class WeatherService {
 
   getWeather(): Subject<Weather> {
     return this.weather;
+  }
+
+  getCurrentWeatherTimestamp(): number {
+    return this.currentWeatherTimestamp;
   }
 
   getWeatherByСurrentLocation(): Promise<any> {
@@ -101,7 +106,7 @@ export class WeatherService {
   }
 
   getWeatherByCity(city: string): Observable<any> {
-     return Observable.interval(this.weatherUpdateInterval).startWith(0)
+    return Observable.interval(this.weatherUpdateInterval).startWith(0)
       .switchMap(() => {
         return this.http.get(`${apiConfig.host}/weather?appid=${apiConfig.appid}&q=${city}&units=${this.unitSystem}`)
           .map((response: Response) => response.json())
@@ -117,7 +122,9 @@ export class WeatherService {
   }
 
   private handleResponseWeatherData(responseData: any): Weather {
-    const { name, main, weather, wind, sys } = responseData;
+    const { name, main, weather, wind, sys, dt } = responseData;
+
+    this.currentWeatherTimestamp = dt;
 
     const updateAt = new Date().getTime();
     const iconClassname = this.weatherIconsService.getIconClassNameByCode(weather[0].id, sys.sunset);

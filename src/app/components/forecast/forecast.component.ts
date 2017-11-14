@@ -20,7 +20,7 @@ export class ForecastComponent implements OnChanges {
 
   constructor(
     private forecastService: ForecastService
-  ) {}
+  ) { }
 
   ngOnChanges(): void {
     if (this.subscribers.forecast) this.subscribers.forecast.unsubscribe();
@@ -29,11 +29,11 @@ export class ForecastComponent implements OnChanges {
       .subscribe((forecast) => {
         const forecastData = forecast.map(forecastByDay => this.forecastService.handleResponseForecastData(forecastByDay));
 
-        this.firstWeekForecast = forecastData.slice(1, 8);
-        this.secondWeekForecast = forecastData.slice(8, 15);
+        this.firstWeekForecast = forecastData.slice(0, 7);
+        this.secondWeekForecast = forecastData.slice(7, 14);
 
         this.recalculateForecastDays();
-    });
+      });
   }
 
   toggleSecondWeekForecastList(): void {
