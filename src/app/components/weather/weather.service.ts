@@ -44,7 +44,7 @@ export class WeatherService {
 
   getWeatherByСurrentLocation(): Promise<any> {
     this.showLoader();
-    if (this.subscribers.city) this.subscribers.city.unsubscribe(); // TODO: I think, It shouldn't be so
+    if (this.subscribers.city) this.subscribers.city.unsubscribe();
 
     return new Promise((resolve, reject) => {
       window.navigator.geolocation.getCurrentPosition((position) => {
@@ -73,9 +73,9 @@ export class WeatherService {
     })
   }
 
-  createResponseWeatherByCity(city: string): Promise<any> { // TODO: I think, It shouldn't be so
+  createResponseWeatherByCity(city: string): Promise<any> {
     this.showLoader();
-    if (this.subscribers.city) this.subscribers.city.unsubscribe(); // TODO: I think, It shouldn't be so
+    if (this.subscribers.city) this.subscribers.city.unsubscribe();
 
 
     return new Promise((resolve, reject) => {
