@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { AppService } from '../app.service';
-import { WeatherIconsService } from '../_services/weather-icons.service';
+import { AppService } from '../../app.service';
+import { WeatherIconsService } from './weather-icons.service';
 
-import { Weather } from '../components/weather/weather';
-import { appConfig } from '../config';
+import { Weather } from '../../components/weather/weather';
+import { appConfig } from '../../config';
 
 
 @Injectable()

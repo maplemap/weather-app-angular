@@ -21,16 +21,16 @@ import { ForecastComponent } from './components/forecast/forecast.component';
 import { ForecastItemComponent } from './components/forecast/forecast-item/forecast-item.component';
 
 import { AppService } from './app.service';
-import { LocalStorageService } from './_services/localstorage.service';
+import { LocalStorageService } from './shared/services/localstorage.service';
 import { WeatherService } from './components/weather/weather.service';
-import { ResolveLocationService } from './_services/resolve-location.service';
-import { ResolveCityService } from './_services/resolve-city.service';
-import { HelperService } from './_services/helper.service';
+import { ResolveLocationService } from './shared/services/resolve-location.service';
+import { ResolveCityService } from './shared/services/resolve-city.service';
+import { HelperService } from './shared/services/helper.service';
 import { LoaderService } from './components/loader/loader.service';
 import { ClockService } from './components/clock/clock.service';
 import { DateService } from './components/date/date.service';
 import { ForecastService } from './components/forecast/forecast.service';
-import { WeatherIconsService } from './_services/weather-icons.service';
+import { WeatherIconsService } from './shared/services/weather-icons.service';
 
 @NgModule({
   declarations: [

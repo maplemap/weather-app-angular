@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-import { LocalStorageService } from "./_services/localstorage.service";
+import { LocalStorageService } from "./shared/services/localstorage.service";
 import { appConfig, apiConfig } from './config';
 
 @Injectable()

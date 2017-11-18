@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import * as wiDataByCode from '../data/wi-codes.data.json';
+import * as wiDataByCode from '../../data/wi-codes.data.json';
 
 @Injectable()
 export class WeatherIconsService {

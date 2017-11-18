@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { AppService } from '../../app.service';
 import { WeatherService } from '../weather/weather.service';
-import { HelperService } from '../../_services/helper.service';
-import { WeatherIconsService } from '../../_services/weather-icons.service';
+import { HelperService } from '../../shared/services/helper.service';
+import { WeatherIconsService } from '../../shared/services/weather-icons.service';
 import { Forecast } from './forecast';
 
 import { apiConfig } from '../../config';

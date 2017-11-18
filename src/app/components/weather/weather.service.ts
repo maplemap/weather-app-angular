@@ -7,8 +7,8 @@ import 'rxjs/add/operator/catch';
 
 import { AppService } from '../../app.service';
 import { LoaderService } from '../../components/loader/loader.service';
-import { HelperService } from '../../_services/helper.service';
-import { WeatherIconsService } from '../../_services/weather-icons.service';
+import { HelperService } from '../../shared/services/helper.service';
+import { WeatherIconsService } from '../../shared/services/weather-icons.service';
 
 import { Weather } from './weather';
 import { apiConfig, appConfig } from '../../config';
