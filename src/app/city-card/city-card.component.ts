@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Weather } from '../../components/weather/weather';
-import { apiConfig } from '../../config';
+import { Weather } from '../components/weather/weather';
+import { apiConfig } from '../config';
 
 @Component({
   selector: 'app-city-card',

@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { CityCardComponent } from './components/city-card/city-card.component';
+import { CityCardComponent } from './city-card/city-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { LoaderComponent } from './components/loader/loader.component';
