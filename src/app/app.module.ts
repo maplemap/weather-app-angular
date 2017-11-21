@@ -15,7 +15,7 @@ import { appRouting } from './app.routing';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ErrorComponent } from './components/error/error.component';
-import { ClockComponent } from './components/clock/clock.component';
+import { ClockComponent } from './clock/clock.component';
 import { DateComponent } from './components/date/date.component';
 import { ForecastComponent } from './components/forecast/forecast.component';
 import { ForecastItemComponent } from './components/forecast/forecast-item/forecast-item.component';
@@ -27,7 +27,7 @@ import { ResolveLocationService } from './shared/services/resolve-location.servi
 import { ResolveCityService } from './shared/services/resolve-city.service';
 import { HelperService } from './shared/services/helper.service';
 import { LoaderService } from './components/loader/loader.service';
-import { ClockService } from './components/clock/clock.service';
+import { ClockService } from './clock/clock.service';
 import { DateService } from './components/date/date.service';
 import { ForecastService } from './components/forecast/forecast.service';
 import { WeatherIconsService } from './shared/services/weather-icons.service';
