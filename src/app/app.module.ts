@@ -14,7 +14,7 @@ import { appRouting } from './app.routing';
 
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ErrorComponent } from './components/error/error.component';
+import { ErrorComponent } from './error/error.component';
 import { ClockComponent } from './clock/clock.component';
 import { DateComponent } from './date/date.component';
 import { ForecastComponent } from './components/forecast/forecast.component';
