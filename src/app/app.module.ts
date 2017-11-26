@@ -17,8 +17,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ErrorComponent } from './error/error.component';
 import { ClockComponent } from './clock/clock.component';
 import { DateComponent } from './date/date.component';
-import { ForecastComponent } from './components/forecast/forecast.component';
-import { ForecastItemComponent } from './components/forecast/forecast-item/forecast-item.component';
+import { ForecastComponent } from './forecast/forecast.component';
+import { ForecastItemComponent } from './forecast/forecast-item/forecast-item.component';
 
 import { AppService } from './app.service';
 import { LocalStorageService } from './shared/services/localstorage.service';
@@ -29,7 +29,7 @@ import { HelperService } from './shared/services/helper.service';
 import { LoaderService } from './components/loader/loader.service';
 import { ClockService } from './clock/clock.service';
 import { DateService } from './date/date.service';
-import { ForecastService } from './components/forecast/forecast.service';
+import { ForecastService } from './forecast/forecast.service';
 import { WeatherIconsService } from './shared/services/weather-icons.service';
 
 @NgModule({
