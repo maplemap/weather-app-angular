@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { appConfig, apiConfig } from '../../config';
+import { appConfig, apiConfig } from '../config';
 
 @Component({
   selector: 'app-header',
