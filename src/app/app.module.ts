@@ -8,7 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { CityCardComponent } from './city-card/city-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { WeatherComponent } from './components/weather/weather.component';
-import { LoaderComponent } from './components/loader/loader.component';
+import { LoaderComponent } from './loader/loader.component';
 
 import { appRouting } from './app.routing';
 
@@ -26,7 +26,7 @@ import { WeatherService } from './components/weather/weather.service';
 import { ResolveLocationService } from './shared/services/resolve-location.service';
 import { ResolveCityService } from './shared/services/resolve-city.service';
 import { HelperService } from './shared/services/helper.service';
-import { LoaderService } from './components/loader/loader.service';
+import { LoaderService } from './loader/loader.service';
 import { ClockService } from './clock/clock.service';
 import { DateService } from './date/date.service';
 import { ForecastService } from './forecast/forecast.service';
