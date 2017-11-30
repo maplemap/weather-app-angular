@@ -13,7 +13,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { appRouting } from './app.routing';
 
 import { UiSwitchModule } from 'ngx-ui-switch';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { ErrorComponent } from './error/error.component';
 import { ClockComponent } from './clock/clock.component';
 import { DateComponent } from './date/date.component';

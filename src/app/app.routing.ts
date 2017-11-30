@@ -5,7 +5,7 @@ import { ResolveLocationService } from './shared/services/resolve-location.servi
 import { ResolveCityService } from './shared/services/resolve-city.service';
 import { WeatherComponent } from './components/weather/weather.component';
 import { ErrorComponent } from './error/error.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const APP_ROUTER: Routes = [
   { path: '', component: WeatherComponent, resolve: { weather: ResolveLocationService } },
