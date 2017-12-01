@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CityCardComponent } from './city-card/city-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { WeatherComponent } from './components/weather/weather.component';
+import { WeatherComponent } from './weather/weather.component';
 import { LoaderComponent } from './loader/loader.component';
 
 import { appRouting } from './app.routing';
@@ -22,7 +22,7 @@ import { ForecastItemComponent } from './forecast/forecast-item/forecast-item.co
 
 import { AppService } from './app.service';
 import { LocalStorageService } from './shared/services/localstorage.service';
-import { WeatherService } from './components/weather/weather.service';
+import { WeatherService } from './weather/weather.service';
 import { ResolveLocationService } from './shared/services/resolve-location.service';
 import { ResolveCityService } from './shared/services/resolve-city.service';
 import { HelperService } from './shared/services/helper.service';
