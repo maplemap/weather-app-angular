@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CityCardComponent } from './city-card/city-card.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 import { WeatherComponent } from './weather/weather.component';
 import { LoaderComponent } from './loader/loader.component';
 
