@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { WeatherService } from '../../components/weather/weather.service';
+import { WeatherService } from '../../weather/weather.service';
 
 @Injectable()
 export class ResolveCityService implements Resolve<any> {

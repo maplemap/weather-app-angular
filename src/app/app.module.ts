@@ -18,7 +18,7 @@ import { ErrorComponent } from './error/error.component';
 import { ClockComponent } from './clock/clock.component';
 import { DateComponent } from './date/date.component';
 import { ForecastComponent } from './forecast/forecast.component';
-import { ForecastItemComponent } from './forecast/forecast-item/forecast-item.component';
+import { ForecastItemComponent } from './forecast/forecast-item.component';
 
 import { AppService } from './app.service';
 import { LocalStorageService } from './shared/services/localstorage.service';

@@ -3,7 +3,7 @@ import { ModuleWithProviders } from '@angular/core';
 
 import { ResolveLocationService } from './shared/services/resolve-location.service';
 import { ResolveCityService } from './shared/services/resolve-city.service';
-import { WeatherComponent } from './components/weather/weather.component';
+import { WeatherComponent } from './weather/weather.component';
 import { ErrorComponent } from './error/error.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 

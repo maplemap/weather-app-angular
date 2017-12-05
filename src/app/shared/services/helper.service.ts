@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AppService } from '../../app.service';
 import { WeatherIconsService } from './weather-icons.service';
 
-import { Weather } from '../../components/weather/weather';
+import { Weather } from '../../weather/weather';
 import { appConfig } from '../../config';
 
 
