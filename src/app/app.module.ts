@@ -24,7 +24,7 @@ import { AppService } from './app.service';
 import { LocalStorageService } from './shared/services/localstorage.service';
 import { WeatherService } from './weather/weather.service';
 import { ResolveLocationService } from './shared/services/resolve-location.service';
-import { ResolveCityService } from './shared/services/resolve-city.service';
+import { CityCardResolver } from './city-card/city-card-resolver.service';
 import { HelperService } from './shared/services/helper.service';
 import { LoaderService } from './loader/loader.service';
 import { ClockService } from './clock/clock.service';
@@ -59,7 +59,7 @@ import { WeatherIconsService } from './shared/services/weather-icons.service';
     LocalStorageService,
     WeatherService,
     ResolveLocationService,
-    ResolveCityService,
+    CityCardResolver,
     LoaderService,
     HelperService,
     ClockService,
