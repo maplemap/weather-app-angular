@@ -20,7 +20,7 @@ import { DateComponent } from './date/date.component';
 import { ForecastComponent } from './forecast/forecast.component';
 import { ForecastItemComponent } from './forecast/forecast-item.component';
 
-import { AppService } from './app.service';
+import { AppService } from './shared/services/app.service';
 import { LocalStorageService } from './shared/services/localstorage.service';
 import { WeatherService } from './weather/weather.service';
 import { ResolveLocationService } from './shared/services/resolve-location.service';

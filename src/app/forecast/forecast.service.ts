@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { AppService } from '../app.service';
+import { AppService } from '../shared/services/app.service';
 import { WeatherService } from '../weather/weather.service';
 import { HelperService } from '../shared/services/helper.service';
 import { WeatherIconsService } from '../shared/services/weather-icons.service';

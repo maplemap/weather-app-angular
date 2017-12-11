@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { AppService } from '../app.service';
+import { AppService } from '../shared/services/app.service';
 import { WeatherService } from './weather.service';
 import { Weather } from './weather';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AppService } from '../../app.service';
+import { AppService } from './app.service';
 import { WeatherIconsService } from './weather-icons.service';
 
 import { Weather } from '../../weather/weather';
