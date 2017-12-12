@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { AppService } from './app.service';
-import { WeatherIconsService } from './weather-icons.service';
-
-import { Weather } from '../../weather/weather';
-import { appConfig } from '../../config';
 
 
 @Injectable()
@@ -12,21 +8,27 @@ export class HelperService {
   private unitSystem: string;
 
   constructor(
-    private appService: AppService,
-    private weatherIconsService: WeatherIconsService
+    private appService: AppService
   ) {
     this.unitSystem = appService.getUnitSystem();
   }
 
   getWindDirection(windDegree: number): string {
     const windDirectionIndex = Math.round((windDegree - 11.25) / 22.5);
-    const windNames = ['North', 'North Northeast', 'Northeast', 'East Northeast', 'East', 'East Southeast', 'Southeast', 'South Southeast', 'South', 'South Southwest', 'Southwest', 'West Southwest', 'West', 'West Northwest', 'Northwest', 'North Northwest'];
+    const windNames = [
+      'North', 'North Northeast', 'Northeast', 'East Northeast', 'East',
+      'East Southeast', 'Southeast', 'South Southeast', 'South', 'South Southwest',
+      'Southwest', 'West Southwest', 'West', 'West Northwest', 'Northwest', 'North Northwest'
+    ];
 
     return windNames[windDirectionIndex];
   }
 
   getWindBeaufortScaleByMeterInSecond(windSpeed: number): string {
-    const beaufortWindScale = ['calm', 'light air', 'light breeze', 'gentle breeze', 'moderate breeze', 'fresh breeze', 'strong breeze', 'high wind, near gale', 'gale', 'severe gale', 'storm', 'violent storm', 'hurricane'];
+    const beaufortWindScale = [
+      'calm', 'light air', 'light breeze', 'gentle breeze', 'moderate breeze', 'fresh breeze',
+      'strong breeze', 'high wind, near gale', 'gale', 'severe gale', 'storm', 'violent storm', 'hurricane'
+    ];
     let windSpeedIndex = 0;
     const windSpeedScale = [
       [0, 0.3],
@@ -55,15 +57,7 @@ export class HelperService {
   }
 
   getPressureInMmHg(pressureInHpa: number): number {
-    const pressureInMmHg = Math.round(pressureInHpa * 0.75006375541921);
-
-    return pressureInMmHg;
-  }
-
-  getPressureInInches(pressureInHpa: number): number {
-    const pressureInInches = Math.round(pressureInHpa * 0.02961339710085);
-
-    return pressureInInches;
+    return Math.round(pressureInHpa * 0.75006375541921);
   }
 
   isItCurrentDayByTimestamps(firstTimestamp, secondTimestamp): boolean {
