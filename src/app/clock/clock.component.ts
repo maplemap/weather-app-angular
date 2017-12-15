@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ClockService } from "./clock.service";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ClockService } from './clock.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
