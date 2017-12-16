@@ -8,11 +8,11 @@ import 'rxjs/add/operator/catch';
 import { AppService } from '../shared/services/app.service';
 import { LoaderService } from '../loader/loader.service';
 import { HelperService } from '../shared/services/helper.service';
-import { WeatherIconsService } from '../shared/services/weather-icons.service';
+import { WeatherIconsService } from '../shared/services/weather-icons/weather-icons.service';
 
 import { Weather } from './weather';
 import { apiConfig, appConfig } from '../config';
-import * as wiDataByCode from '../data/wi-codes.data.json';
+import * as wiDataByCode from '../shared/services/weather-icons/weather-icons-codes.data.json';
 
 @Injectable()
 export class WeatherService {
