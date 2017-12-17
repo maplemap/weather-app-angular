@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { DateService } from "./date.service";
+import { Component, OnInit } from '@angular/core';
+import { DateService } from './date.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -17,9 +17,5 @@ export class DateComponent implements OnInit {
     this._clockSubscription = this.dateService.getDate().subscribe(
       date => this.date = this.dateService.formatDate(date)
     );
-  }
-
-  ngOnDestroy(): void {
-    this._clockSubscription.unsubscribe();
   }
 }

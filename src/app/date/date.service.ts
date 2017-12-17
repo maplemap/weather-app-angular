@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class DateService {
@@ -7,7 +7,7 @@ export class DateService {
   private locale = 'en-us';
 
   constructor() {
-    this.date = Observable.interval(10000).startWith(0).map(date => new Date()).share();
+    this.date = Observable.interval(10000).startWith(0).map(() => new Date()).share();
   }
 
   getDate(): Observable<Date> {
