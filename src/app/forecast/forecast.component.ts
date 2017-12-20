@@ -8,7 +8,7 @@ import { Forecast } from './forecast';
   templateUrl: './forecast.component.html',
   styleUrls: ['./forecast.component.scss']
 })
-export class ForecastComponent implements OnChanges {
+export class ForecastComponent implements OnChanges, OnDestroy {
   @Input() cityName: string;
   @Input() measureOfTemp: string;
 
@@ -23,7 +23,9 @@ export class ForecastComponent implements OnChanges {
   ) { }
 
   ngOnChanges(): void {
-    if (this.subscribers.forecast) this.subscribers.forecast.unsubscribe();
+    if (this.subscribers.forecast) {
+      this.subscribers.forecast.unsubscribe()
+    }
 
     this.subscribers.forecast = this.forecastService.getForecastByCity(this.cityName)
       .subscribe((forecast) => {

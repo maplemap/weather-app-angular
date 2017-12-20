@@ -12,7 +12,7 @@ import { apiConfig } from '../config';
 
 @Injectable()
 export class ForecastService {
-  private forecastUpdateInterval: number = 300000; // 5 minutes;
+  private forecastUpdateInterval = apiConfig.updateInterval.forecast;
   private unitSystem: string;
 
   constructor(
@@ -28,7 +28,9 @@ export class ForecastService {
   getForecastByCity(city: string): Observable<any> {
     return Observable.interval(this.forecastUpdateInterval).startWith(0)
       .switchMap(() =>
-        this.http.get(`${apiConfig.host}/forecast/daily?q=${city}&appid=${apiConfig.appid}&units=${this.unitSystem}&cnt=${apiConfig.amountForecastDays}`)
+        this.http.get(
+          `${apiConfig.host}/forecast/daily?q=${city}&appid=${apiConfig.appId}&units=${this.unitSystem}
+          &cnt=${apiConfig.amountForecastDays}`)
           .map((response: Response) => response.json())
           .map((data) => data.list)
           .catch(this.handleError)
