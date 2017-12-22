@@ -11,14 +11,14 @@ export class HeaderComponent implements OnInit {
   @Input() currentUnitSystem: string;
   @Output() changeUnit: EventEmitter<string> = new EventEmitter();
 
-  isUnitSwitcherChecked: boolean = false;
+  isUnitSwitcherChecked = false;
 
   ngOnInit() {
     this.isUnitSwitcherChecked = this.currentUnitSystem === appConfig.defaultUnit;
   }
 
   onChangeUnitSwitcher() {
-    const unitSystems = Object.keys(apiConfig.measurementUnits)
+    const unitSystems = Object.keys(apiConfig.measurementUnits);
     const unitIndex = this.isUnitSwitcherChecked ? 1 : 0;
 
     this.changeUnit.emit(unitSystems[unitIndex]);
