@@ -9,7 +9,7 @@ import { LoaderState } from './loader';
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })
-export class LoaderComponent implements OnInit {
+export class LoaderComponent implements OnInit, OnDestroy {
   show = false;
   private subscription: Subscription;
   constructor(
