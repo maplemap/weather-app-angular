@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent {
-  searchText: string = '';
+  searchText = '';
 
   constructor(
     private router: Router
-  ) { };
+  ) { }
 
   onClickCleanBtn() {
     this.searchText = '';

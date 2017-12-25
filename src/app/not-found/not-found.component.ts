@@ -14,5 +14,4 @@ export class NotFoundComponent {
       this.city = params['city'];
     });
   }
-
 }
