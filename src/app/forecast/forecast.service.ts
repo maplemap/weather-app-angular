@@ -29,8 +29,8 @@ export class ForecastService {
     return Observable.interval(this.forecastUpdateInterval).startWith(0)
       .switchMap(() =>
         this.http.get(
-          `${apiConfig.host}/forecast/daily?q=${city}&appid=${apiConfig.appId}&units=${this.unitSystem}
-          &cnt=${apiConfig.amountForecastDays}`)
+          `${apiConfig.host}/forecast/daily?q=${city}&appid=${apiConfig.appId}&units=${this.unitSystem}&cnt=${apiConfig.amountForecastDays}`
+        )
           .map((response: Response) => response.json())
           .map((data) => data.list)
           .catch(this.handleError)
