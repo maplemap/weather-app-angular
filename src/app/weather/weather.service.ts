@@ -21,7 +21,7 @@ export class WeatherService {
   private currentWeatherTimestamp: number;
   private subscribers: any = {};
   private wiDataByCode: any;
-  private weatherUpdateInterval: number = 300000; // 300000 = 5 minutes
+  private weatherUpdateInterval = apiConfig.updateInterval.weather;
 
   constructor(
     private http: Http,
@@ -44,7 +44,9 @@ export class WeatherService {
 
   getWeatherByСurrentLocation(): Promise<any> {
     this.showLoader();
-    if (this.subscribers.city) this.subscribers.city.unsubscribe();
+    if (this.subscribers.city) {
+      this.subscribers.city.unsubscribe();
+    }
 
     return new Promise((resolve, reject) => {
       window.navigator.geolocation.getCurrentPosition((position) => {
@@ -70,13 +72,14 @@ export class WeatherService {
           this.hideLoader();
         }
       });
-    })
+    });
   }
 
   createResponseWeatherByCity(city: string): Promise<any> {
     this.showLoader();
-    if (this.subscribers.city) this.subscribers.city.unsubscribe();
-
+    if (this.subscribers.city) {
+      this.subscribers.city.unsubscribe();
+    }
 
     return new Promise((resolve, reject) => {
       this.subscribers.city = this.getWeatherByCity(city).subscribe((weather) => {
@@ -86,14 +89,17 @@ export class WeatherService {
       }, (error) => {
         reject(error);
         this.hideLoader();
-      })
-    })
+      });
+    });
   }
 
   getWeatherByLocation(latitude: number, longitude: number): Observable<any> {
     return Observable.interval(this.weatherUpdateInterval).startWith(0)
       .switchMap(() =>
-        this.http.get(`${apiConfig.host}/weather?appid=${apiConfig.appid}&lat=${latitude}&lon=${longitude}&units=${this.unitSystem}`)
+        this.http.get(
+          `${apiConfig.host}/weather?appid=${apiConfig.appId}&lat=${latitude}&lon=${longitude}
+          &units=${this.unitSystem}`
+        )
           .map((response: Response) => response.json())
           .map((data) => {
             const weather = this.handleResponseWeatherData(data);
@@ -108,7 +114,7 @@ export class WeatherService {
   getWeatherByCity(city: string): Observable<any> {
     return Observable.interval(this.weatherUpdateInterval).startWith(0)
       .switchMap(() => {
-        return this.http.get(`${apiConfig.host}/weather?appid=${apiConfig.appid}&q=${city}&units=${this.unitSystem}`)
+        return this.http.get(`${apiConfig.host}/weather?appid=${apiConfig.appId}&q=${city}&units=${this.unitSystem}`)
           .map((response: Response) => response.json())
           .map((data) => {
             const weather = this.handleResponseWeatherData(data);
@@ -116,7 +122,7 @@ export class WeatherService {
             this.weather.next(weather);
             return weather;
           })
-          .catch(this.handleError)
+          .catch(this.handleError);
       }
       );
   }
@@ -130,7 +136,9 @@ export class WeatherService {
     const iconClassname = this.weatherIconsService.getIconClassNameByCode(weather[0].id, sys.sunset);
     const temperature = Math.round(main.temp);
     const pressureInHpa = Math.round(main.pressure);
-    const pressureInMmHg = (this.unitSystem === appConfig.defaultUnit) ? this.helperService.getPressureInMmHg(pressureInHpa) : pressureInHpa;
+    const pressure = (this.unitSystem === appConfig.defaultUnit) ?
+      this.helperService.getPressureInMmHg(pressureInHpa) :
+      pressureInHpa;
     const windDegrees = Math.round(wind.deg);
     const windDirection = this.helperService.getWindDirection(windDegrees);
     const windBeaufortScale = this.helperService.getWindBeaufortScaleByMeterInSecond(wind.speed);
@@ -143,8 +151,7 @@ export class WeatherService {
       iconClassname,
       temperature,
       main.humidity,
-      pressureInHpa,
-      pressureInMmHg,
+      pressure,
       weather[0].description,
       sunriseTime,
       sunsetTime,
@@ -155,7 +162,7 @@ export class WeatherService {
   }
 
   private handleError(error: any): Observable<any> {
-    return Observable.throw(error.message || error)
+    return Observable.throw(error.message || error);
   }
 
   private showLoader(): void {
