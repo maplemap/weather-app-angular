@@ -11,7 +11,10 @@ const APP_ROUTER: Routes = [
   { path: '', component: WeatherComponent, resolve: { weather: ResolveLocationService } },
   { path: ':city', component: WeatherComponent, resolve: { weather: CityCardResolver } },
   { path: 'service/search', component: NotFoundComponent },
-  { path: '**', component: ErrorComponent, data: { title: '404 Not Found', message: 'You may be lost. Follow the breadcrumbs back <a href="/">home</a>.' } }
-]
+  {
+    path: '**',
+    component: ErrorComponent,
+    data: { title: '404 Not Found', message: 'You may be lost. Follow the breadcrumbs back <a href="/">home</a>.' } }
+];
 
-export const appRouting: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER)
+export const appRouting: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);
