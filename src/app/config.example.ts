@@ -6,11 +6,11 @@ export const appConfig = {
       longitude: -0.118092
     }
   }
-}
+};
 
 export const apiConfig = {
   host: 'https://api.openweathermap.org/data/2.5',
-  appid: '0f3fb9fa31ad3d41f1bb2bd0841c3f2f',
+  appId: '0f3fb9fa31ad3d41f1bb2bd0841c3f2f',
   measurementUnits: {
     metric: {
       temperature: 'C',
@@ -23,5 +23,9 @@ export const apiConfig = {
       pressure: 'hPa'
     }
   },
-  amountForecastDays: 16
-}
+  amountForecastDays: 16,
+  updateInterval: {
+    forecast: 300000, // 5 minutes
+    weather: 300000 // 5 minutes
+  }
+};
