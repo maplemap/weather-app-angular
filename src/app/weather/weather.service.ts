@@ -97,8 +97,7 @@ export class WeatherService {
     return Observable.interval(this.weatherUpdateInterval).startWith(0)
       .switchMap(() =>
         this.http.get(
-          `${apiConfig.host}/weather?appid=${apiConfig.appId}&lat=${latitude}&lon=${longitude}
-          &units=${this.unitSystem}`
+          `${apiConfig.host}/weather?appid=${apiConfig.appId}&lat=${latitude}&lon=${longitude}&units=${this.unitSystem}`
         )
           .map((response: Response) => response.json())
           .map((data) => {
