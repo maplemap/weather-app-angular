@@ -8,8 +8,6 @@
 # dependencies
 /node_modules
 
-# app
-/src/app/config.ts
 
 # IDEs and editors
 /.idea
