@@ -1,0 +1,66 @@
+@import '../../styles/variables';
+
+.search-bar {
+  max-width: 600px;
+  padding: 0 3%;
+  margin: 2.5em auto 1em auto;
+
+  & > div {
+    box-shadow:
+      rgba(0, 0, 0, 0.12) 0 1px 0,
+      rgba(0, 0, 0, 0.12) 0 1px 0 !important;
+  }
+
+  &__box {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 3em;
+  }
+
+  &__input {
+    width: 100%;
+    font-size: 1.5em;
+    font-weight: 300;
+    margin: 0 1em;
+  }
+
+  &__placeholder {
+    position: absolute;
+    z-index: -1;
+    top: .5em;
+    left: 1em;
+    font-size: 1.5em;
+    font-weight: 300;
+    opacity: .3;
+    @include transition(.1s);
+
+    &--hide {
+      opacity: 0;
+    }
+  }
+
+  &__action-btn {
+    position: relative;
+    width: 3.5em;
+  }
+
+  &__search-btn,
+  &__clean-btn {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    background: #fff;
+    @include transition(.3s);
+
+    &--hide {
+      z-index: -10;
+      opacity: 0;
+    }
+  }
+
+  &__clean-btn {
+    cursor: pointer;
+  }
+}

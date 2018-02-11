@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { AppService } from "./app.service";
+import { AppService } from './shared/services/app.service';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +12,13 @@ export class AppComponent implements OnInit {
 
   constructor(
     private appService: AppService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.unitSystem = this.appService.getUnitSystem();
   }
 
-  changeUnit(unitStatus: boolean) {
-    this.appService.updateUnitSystem(unitStatus);
+  changeUnit(unitSystem: string) {
+    this.appService.updateUnitSystem(unitSystem);
   }
 }

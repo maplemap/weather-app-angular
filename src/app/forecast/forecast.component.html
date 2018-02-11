@@ -1,0 +1,20 @@
+<div class="forecast" *ngIf="firstWeekForecast?.length > 0">
+  <h2 class="forecast__header">Forecast for {{forecastDays}} days</h2>
+  <ul class="forecast__list forecast__list--first-week">
+    <app-forecast-item *ngFor="let dayOfFirstWeek of firstWeekForecast" [currentDay]="dayOfFirstWeek.currentDay" [date]="dayOfFirstWeek.date"
+      [temperatureDay]="dayOfFirstWeek.temperatureDay" [temperatureNight]="dayOfFirstWeek.temperatureNight" [iconClassname]="dayOfFirstWeek.iconClassname"
+      [measureOfTemp]="measureOfTemp" [description]="dayOfFirstWeek.description">
+    </app-forecast-item>
+  </ul>
+  <ul [ngClass]="{'forecast__list--collapsed': !isSecondWeekForecastListShow}" class="forecast__list forecast__list--second-week">
+    <app-forecast-item *ngFor="let dayOfSecondWeek of secondWeekForecast" [date]="dayOfSecondWeek.date" [temperatureDay]="dayOfSecondWeek.temperatureDay"
+      [temperatureNight]="dayOfSecondWeek.temperatureNight" [iconClassname]="dayOfSecondWeek.iconClassname" [measureOfTemp]="measureOfTemp"
+      [description]="dayOfSecondWeek.description">
+    </app-forecast-item>
+  </ul>
+  <div class="forecast__action" *ngIf="secondWeekForecast?.length > 0">
+    <button class="btn forecast__action-btn" (click)="toggleSecondWeekForecastList()">
+      {{ !isSecondWeekForecastListShow ? 'More' : 'Less'}}
+    </button>
+  </div>
+</div>

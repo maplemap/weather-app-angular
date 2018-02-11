@@ -1,0 +1,41 @@
+@import '../../styles/variables';
+
+.header {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 6px 0px;
+
+  &__wrapper {
+    display: flex;
+    width: 94%;
+    max-width: $max-width-app;
+    height: 4em;
+    line-height: 4em;
+    padding: 0 3%;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    display: inline-block;
+    line-height: 5.1em;
+    margin-right: .5em;
+
+    .wi {
+      font-size: 2.1em;
+    }
+  }
+
+  &__brand {
+    font-size: 1.3em;
+  }
+
+  &__right-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+  }
+
+  &__unit-switcher {
+    display: flex;
+    margin: 0 .3em;
+  }
+}

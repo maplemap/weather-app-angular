@@ -1,0 +1,64 @@
+<div class="city-card">
+  <h2 class="city-card__header"> Current weather and forecasts in your city</h2>
+  <div class="city-card__box">
+    <div class="city-card__updated-label">
+      last update at:
+      <span>{{weather.updateAt | date: 'HH:mm:ss'}}</span>
+    </div>
+    <div class="city-card__sky-icon">
+      <span [attr.class]="weather.iconClassname"></span>
+    </div>
+    <div class="city-card__temperature">
+      <span data-deg="°" [attr.data-unit]="measureOfTemp">{{ weather.temp }}</span>
+    </div>
+    <div class="city-card__city-name" title="Washington">
+      {{ weather.city }}
+      <div class="city-card__sky-state city-card__sky-state--city-name">
+        {{ weather.description }}
+      </div>
+    </div>
+    <div class="city-card__date-time">
+      <span class="city-card__clock">
+        <app-clock></app-clock>
+      </span>
+      <span class="city-card__date">
+        <app-date></app-date>
+      </span>
+    </div>
+    <div class="divider"></div>
+    <div class="city-card__info">
+      <div class="city-card__info-list">
+        <div class="city-card__info-list-item">
+          <strong>Wind:</strong>
+          <span *ngIf="weather.windDirection">{{ weather.windDirection | lowercase }},</span>
+          {{ weather.windBeaufortScale | lowercase }}
+        </div>
+        <div class="city-card__info-list-item">
+          <strong>Wind speed:</strong> {{ weather.windSpeed }} {{ measureOfWindSpeed }}
+        </div>
+        <div class="city-card__info-list-item">
+          <strong>Humidity:</strong>
+          <span *ngIf="weather.humidity">{{ weather.humidity }}%</span>
+        </div>
+        <div class="city-card__info-list-item">
+          <strong>Pressure:</strong> {{ weather.pressure }} {{ measureOfPressure }}
+        </div>
+      </div>
+      <div class="city-card__info-list">
+        <div class="city-card__info-list-item">
+          <strong>Cloudiness:</strong> {{ weather.description }}
+        </div>
+        <div class="city-card__info-list-item">
+          <strong>Sunrise:</strong> {{ weather.sunrise | date: 'HH:mm' }}
+        </div>
+        <div class="city-card__info-list-item">
+          <strong>Sunset:</strong> {{ weather.sunset | date: 'HH:mm' }}</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="city-card__forecasts">
+      <app-forecast [measureOfTemp]="measureOfTemp" [cityName]="weather.city">
+      </app-forecast>
+    </div>
+  </div>
+</div>

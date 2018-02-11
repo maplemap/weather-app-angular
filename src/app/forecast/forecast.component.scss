@@ -1,0 +1,68 @@
+@import '../../styles/variables.scss';
+
+.forecast {
+  height: auto;
+  font-size: .8em;
+  overflow: hidden;
+  @include clear-fix;
+  @include transition(.3s);
+
+  &__header {
+    font-size: 1.25em;
+    margin-bottom: .83em;
+  }
+
+  &__list {
+    display: flex;
+    padding: 0 1em 1.5em 1em;
+
+    &--collapsed {
+      display: none;
+    }
+
+    &--second-week {
+      margin-top: 1em;
+    }
+
+    app-forecast-item {
+      display: block;
+      width: 14.285714285714286%;
+      text-align: center;
+    }
+  }
+
+  &__action {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
+
+    &-btn {
+      width: 100%;
+      text-transform: uppercase;
+      font-size: .8em;
+      border: none;
+      padding: .5em 0;
+      background: rgba(0, 0, 0, 0.01);
+    }
+  }
+
+
+  @media screen and (max-width: 31.25em) {
+    & {
+      width: 80%;
+      font-size: 1em;
+      margin: 0 auto;
+
+      &__list {
+        flex-flow: wrap;
+        padding: 0;
+
+        app-forecast-item {
+          flex: 0 0 50%;
+          display: inline-block;
+          margin-bottom: 1.5em;
+          @include clear-fix;
+        }
+      }
+    }
+  }
+}

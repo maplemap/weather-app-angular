@@ -1,0 +1,203 @@
+@import '../../styles/variables.scss';
+
+.city-card {
+  max-width: $max-width-app;
+  margin: 0 auto;
+
+  &__header {
+    padding: 1.18em 0;
+  }
+
+  &__box {
+    position:relative;
+    font-family: $roboto;
+    box-sizing: border-box;
+    border-radius: 2px;
+    padding: 2em 0 0 0;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    @include clear-fix;
+  }
+
+    &__temperature {
+    font-size: 4em;
+    text-align: center;
+
+    span {
+      position: relative;
+      left: -10px;
+      display: inline-block;
+      text-align: center;
+      margin: 0 auto;
+
+      &:before,
+      &::after {
+        display: block;
+        position: absolute;
+      }
+
+      &::before {
+        content: attr(data-deg);
+        top: -13px;
+        right: -17px;
+        font-weight: 300;
+        font-size: 90%;
+      }
+
+      &::after {
+        content: attr(data-unit);
+        bottom: 7px;
+        right: -26px;
+        font-size: 55%;
+      }
+    }
+  }
+
+  &__updated-label {
+    position: absolute;
+    top: 3.8em;
+    right: 0;
+    width: 30%;
+    color: #9a9a9a;
+    font-size: .5em;
+    font-weight: 300;
+    text-align: right;
+    text-transform: uppercase;
+    opacity: .8;
+    padding: .3em 3% .2em 0%;
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0), #f7f5f5);
+    background: -ms-linear-gradient(left, rgba(255, 255, 255, 0), #f7f5f5);
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #f7f5f5);
+
+    span {
+      color: #656565;
+      font-size: 1.3em;
+    }
+  }
+
+  &__sky-icon {
+    position: absolute;
+    top: 2.5em;
+    left: 8%;
+
+    .wi {
+      font-size: 6em;
+    }
+  }
+
+  &__city-name {
+    width: 74%;
+    font-size: 2em;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 auto .5em auto;
+  }
+
+  &__sky-state {
+    &--city-name {
+      font-size: .5em;
+      text-transform: lowercase;
+      opacity: .7;
+    }
+  }
+
+  &__date-time {
+    position: absolute;
+    top: 3em;
+    right: 3%;
+    font-size: 1em;
+    text-align: right;
+  }
+
+  &__clock {
+    display: block;
+    font-size: 2.5em;
+  }
+
+  &__date {
+    display: block;
+    text-transform: uppercase;
+    margin-right: .1em;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: center;
+    color: #656565;
+    font-size: .8em;
+
+    &-list {
+      margin: 0 9%;
+    }
+  }
+
+
+  // media query
+  @media screen and (max-width: 33.125em) {
+    &__updated-label {
+      top: 1.8em;
+    }
+    &__sky-icon {
+      top: 4em;
+      font-size: 60%;
+    }
+    &__temperature {
+      font-size: 2.7em;
+    }
+    &__date-time {
+      font-size: .7em;
+    }
+  }
+
+  @media screen and (max-width: 31.25em) {
+    &__updated-label {
+      width: 50%;
+    }
+
+    &__temperature {
+      font-size: 3em;
+    }
+
+    &__date-time {
+      font-size: .8em;
+    }
+
+    &__info {
+      flex-flow: wrap;
+      text-align: center;
+      font-size: .9em;
+      padding: 0;
+    }
+
+    &__info-list {
+      flex: 0 0 50%;
+      margin: 0 2.5% 0 2.5%;
+
+      &:first-child {
+        margin-bottom: 1em;
+      }
+    }
+  }
+
+  @media screen and (max-width: 23.125em) {
+    &__sky-icon {
+      top: 4em;
+      font-size: 45%;
+    }
+
+    &__updated-label {
+      top: 0.8em;
+    }
+
+    &__date {
+      font-size: 120%;
+    }
+
+    &__date-time {
+      top: 2.5em;
+      font-size: .6em;
+    }
+  }
+}
